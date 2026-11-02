@@ -64,7 +64,7 @@ def user_prompt(question: str, as_of: str) -> str:
 def check_helix() -> None:
     url = settings().mcp_url
     try:
-        httpx.get(url, timeout=3)
+        httpx.get(url, timeout=15)
     except httpx.HTTPError as exc:
         raise SystemExit(f"Helix MCP server is not reachable at {url} ({exc.__class__.__name__}). "
                          "Start it with: uv run python -m context.mcp") from exc
