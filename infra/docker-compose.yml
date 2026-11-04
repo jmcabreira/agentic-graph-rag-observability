@@ -133,8 +133,8 @@ services:
       - "8787:80"
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:80/')"]
-      interval: 5s
-      timeout: 5s
+      interval: 10s
+      timeout: 15s
       retries: 10
 
   agent:
@@ -213,10 +213,10 @@ services:
       - langfuse_minio_data:/data
     healthcheck:
       test: ["CMD", "mc", "ready", "local"]
-      interval: 1s
-      timeout: 5s
-      retries: 5
-      start_period: 1s
+      interval: 10s
+      timeout: 15s
+      retries: 10
+      start_period: 30s
 
   redis:
     image: redis:7
@@ -245,8 +245,8 @@ services:
       - langfuse_postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 3s
-      timeout: 3s
+      interval: 10s
+      timeout: 15s
       retries: 10
 
 volumes:
