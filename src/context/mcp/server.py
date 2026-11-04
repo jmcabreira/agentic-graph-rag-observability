@@ -36,10 +36,17 @@ async def search_context(
     Returns facts with a status (current, superseded, true on as_of, no longer true on as_of),
     validity dates, and the source documents each fact came from. Call it several times with
     different queries for questions that span customers, contracts, policies and people."""
-    result = await retrieval.search_facts(graph(), query, as_of=as_of, limit=limit)
-
     lf = get_client()
-    if lf is not None:
+    if lf is None:
+        return await retrieval.search_facts(graph(), query, as_of=as_of, limit=limit)
+
+    with lf.start_as_current_observation(
+        name="neo4j-retrieval",
+        as_type="retriever",
+        input={"query": query, "as_of": as_of, "limit": limit},
+    ) as obs:
+        result = await retrieval.search_facts(graph(), query, as_of=as_of, limit=limit)
+
         facts = result.get("facts", [])
         status_counts: dict[str, int] = {}
         source_paths: list[str] = []
@@ -52,10 +59,7 @@ async def search_context(
                 system = path.split("/")[0] if "/" in path else "unknown"
                 source_systems.add(system)
 
-        trace = lf.trace(name="search-context")
-        trace.span(
-            name="neo4j-retrieval",
-            input={"query": query, "as_of": as_of, "limit": limit},
+        obs.update(
             output=result,
             metadata={
                 "as_of": as_of,
@@ -78,17 +82,19 @@ async def find_entities(
     """Look up entities (customers, people, teams, policies, contracts, plans, incidents) with their summaries.
 
     Use it to resolve names and aliases, for example a Slack nickname to a person's full name."""
-    result = await retrieval.find_entities(graph(), query, limit=limit)
-
     lf = get_client()
-    if lf is not None:
-        entities = result.get("entities", [])
-        trace = lf.trace(name="find-entities")
-        trace.span(
-            name="neo4j-retrieval",
-            input={"query": query, "limit": limit},
+    if lf is None:
+        return await retrieval.find_entities(graph(), query, limit=limit)
+
+    with lf.start_as_current_observation(
+        name="neo4j-retrieval",
+        as_type="retriever",
+        input={"query": query, "limit": limit},
+    ) as obs:
+        result = await retrieval.find_entities(graph(), query, limit=limit)
+        obs.update(
             output=result,
-            metadata={"entities_returned": len(entities)},
+            metadata={"entities_returned": len(result.get("entities", []))},
         )
 
     return result
@@ -101,16 +107,18 @@ async def read_source(
     """Read the original source document behind a fact (contract text, policy page, Slack day, ticket thread).
 
     Use it to verify exact wording, numbers and dates before answering."""
-    result = retrieval.read_source(path)
-
     lf = get_client()
-    if lf is not None:
-        trace = lf.trace(name="read-source")
-        trace.span(
-            name="read-source",
-            input={"path": path},
+    if lf is None:
+        return retrieval.read_source(path)
+
+    with lf.start_as_current_observation(
+        name="read-source",
+        as_type="tool",
+        input={"path": path},
+    ) as obs:
+        result = retrieval.read_source(path)
+        obs.update(
             output={"path": result.get("path"), "truncated": result.get("truncated"), "error": result.get("error")},
-            metadata={"path": path},
         )
 
     return result
@@ -119,15 +127,18 @@ async def read_source(
 @mcp.tool()
 async def list_sources() -> dict:
     """List every source document Helix knows about, grouped by system, with the date of each document."""
-    result = retrieval.list_sources()
-
     lf = get_client()
-    if lf is not None:
+    if lf is None:
+        return retrieval.list_sources()
+
+    with lf.start_as_current_observation(
+        name="list-sources",
+        as_type="tool",
+        input={},
+    ) as obs:
+        result = retrieval.list_sources()
         systems = result.get("systems", {})
-        trace = lf.trace(name="list-sources")
-        trace.span(
-            name="list-sources",
-            input={},
+        obs.update(
             output=result,
             metadata={"systems": list(systems.keys()), "total_sources": sum(len(v) for v in systems.values())},
         )

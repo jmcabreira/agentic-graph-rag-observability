@@ -1,18 +1,19 @@
-"""Langfuse client setup for Helix MCP instrumentation.
+"""Langfuse v4 client setup for Helix MCP instrumentation.
 
 Returns the Langfuse client when the three required env vars are present.
 Returns None silently when they are missing — tracing becomes a no-op.
+
+Langfuse v4 sends all events via OTLP. Configure env vars before importing:
+  LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY, LANGFUSE_BASE_URL
 """
 
 import os
 
-from langfuse import Langfuse
-
-_client: Langfuse | None = None
+_client = None
 _checked = False
 
 
-def get_client() -> Langfuse | None:
+def get_client():
     global _client, _checked
     if _checked:
         return _client
@@ -32,6 +33,7 @@ def get_client() -> Langfuse | None:
         print(f"[observability] tracing disabled — missing: {', '.join(missing)}")
         return None
 
+    from langfuse import Langfuse
     _client = Langfuse(
         public_key=public_key,
         secret_key=secret_key,
