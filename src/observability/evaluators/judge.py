@@ -88,7 +88,7 @@ def correctness(*, input: Any, output: Any, expected_output: Any, metadata: Any 
     if lf is not None:
         with lf.start_as_current_observation(
             name="judge",
-            as_type="evaluation",
+            as_type="span",
             input={"question": (input or {}).get("question", ""), "as_of": (input or {}).get("as_of", "")},
             output={"verdict": judgment.verdict, "reason": judgment.reason},
             metadata={"judge_model": JUDGE_MODEL},

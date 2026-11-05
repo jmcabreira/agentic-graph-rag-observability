@@ -60,6 +60,7 @@ def get_client():
         host=base_url,
         mask=_mask,
         environment=os.environ.get("LANGFUSE_TRACING_ENVIRONMENT", "workshop"),
+        timeout=60,
     )
     return _client
 
