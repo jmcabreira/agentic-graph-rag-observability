@@ -61,12 +61,25 @@ async function main() {
 
   // ── login ──────────────────────────────────────────────────────────────
   await page.goto(`${BASE}/auth/sign-in`);
-  await page.waitForSelector('input[name="email"]', { timeout: 10000 });
+  await page.waitForSelector('input[name="email"]', { timeout: 15000 });
   await page.fill('input[name="email"]', EMAIL);
   await page.fill('input[name="password"]', PASSWORD);
   await page.click('button[type="submit"]');
-  await page.waitForURL(`${BASE}/**`, { timeout: 15000 }).catch(() => {});
-  console.log("  ✓ logged in\n");
+
+  // wait until we leave the sign-in page (indicates successful login)
+  try {
+    await page.waitForFunction(
+      () => !window.location.pathname.includes('/auth/sign-in'),
+      { timeout: 20000 }
+    );
+  } catch {
+    // take debug screenshot to see what happened
+    await page.screenshot({ path: join(OUT, "debug-login.png") });
+    console.error("  ✗ login failed — saved debug-login.png");
+    await browser.close();
+    process.exit(1);
+  }
+  console.log("  ✓ logged in →", page.url(), "\n");
 
   // ── 1. tracing overview ───────────────────────────────────────────────
   await page.goto(`${BASE}/project/ask-orbisa/traces`);
@@ -117,16 +130,22 @@ async function main() {
   }
 
   // ── 9. evaluators (after setup.py) ───────────────────────────────────
-  await page.goto(`${BASE}/project/ask-orbisa/evals/evaluators`);
-  await shot(page, "09-evaluators", "table, [data-testid='evaluators']");
+  // Navigate via sidebar to avoid stale UI state
+  await page.goto(`${BASE}/project/ask-orbisa/evals/evaluators/cmw45ypjm0007pc7tsaoz8lk7`);
+  await page.waitForLoadState("networkidle").catch(() => {});
+  // dismiss any toast errors
+  await page.locator('button[aria-label="Close"], [data-radix-toast-close]').first().click().catch(() => {});
+  await shot(page, "09-evaluators");
 
   // ── 10. score configs ─────────────────────────────────────────────────
   await page.goto(`${BASE}/project/ask-orbisa/evals/score-configs`);
-  await shot(page, "10-score-configs", "table");
+  await page.waitForLoadState("networkidle").catch(() => {});
+  await shot(page, "10-score-configs", "table, h1");
 
   // ── 11. annotation queues ─────────────────────────────────────────────
   await page.goto(`${BASE}/project/ask-orbisa/evals/annotation-queues`);
-  await shot(page, "11-annotation-queues", "table");
+  await page.waitForLoadState("networkidle").catch(() => {});
+  await shot(page, "11-annotation-queues", "table, h1");
 
   await browser.close();
   console.log(`\nDone. Screenshots saved to: images/screenshots/`);
