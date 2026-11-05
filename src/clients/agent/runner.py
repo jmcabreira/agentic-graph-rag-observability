@@ -10,6 +10,11 @@ from context.config import DATA_DIR, settings
 from observability.tracing import get_client
 from observability.tracing.otel_env import otel_env
 
+try:
+    from langfuse import propagate_attributes
+except ImportError:
+    propagate_attributes = None
+
 SYSTEM_PROMPT = Path(__file__).with_name("system_prompt.md").read_text()
 TRUTH_FILE = DATA_DIR / "truth" / "questions.jsonl"
 
@@ -122,23 +127,52 @@ def _record_model_usage(lf, result: "ResultMessage") -> None:
             pass
 
 
-async def ask(question: str, as_of: str, model: str | None = None, system_prompt: str = SYSTEM_PROMPT) -> AgentRun:
+async def ask(
+    question: str,
+    as_of: str,
+    model: str | None = None,
+    system_prompt: str = SYSTEM_PROMPT,
+    session_id: str | None = None,
+    user_id: str = "workshop",
+    tags: list[str] | None = None,
+    question_id: str | None = None,
+    category: str | None = None,
+) -> AgentRun:
     lf = get_client()
     if lf is None:
         run, _ = await _run_query(question, as_of, model, system_prompt)
         return run
+
+    _tags = list(tags or [])
+    if question_id:
+        _tags.append(question_id)
+    if category:
+        _tags.append(category)
+    _tags.append(f"as-of:{as_of}")
 
     with lf.start_as_current_observation(
         name="agent",
         as_type="agent",
         input={"question": question, "as_of": as_of},
     ) as obs:
-        run, result = await _run_query(question, as_of, model, system_prompt)
-        if result is not None:
-            _record_model_usage(lf, result)
-        obs.update(
-            output={"answer": run.answer[:1000]},
-            metadata={"cost_usd": run.cost_usd, "duration_ms": run.duration_ms, "num_turns": run.num_turns},
-        )
+        ctx_mgr = propagate_attributes(
+            user_id=user_id,
+            session_id=session_id,
+            tags=_tags,
+        ) if propagate_attributes else None
+
+        if ctx_mgr:
+            ctx_mgr.__enter__()
+        try:
+            run, result = await _run_query(question, as_of, model, system_prompt)
+            if result is not None:
+                _record_model_usage(lf, result)
+            obs.update(
+                output={"answer": run.answer[:1000]},
+                metadata={"cost_usd": run.cost_usd, "duration_ms": run.duration_ms, "num_turns": run.num_turns},
+            )
+        finally:
+            if ctx_mgr:
+                ctx_mgr.__exit__(None, None, None)
 
     return run

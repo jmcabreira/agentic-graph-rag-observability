@@ -19,6 +19,8 @@ def main() -> None:
     parser.add_argument("--id", help="run a ground-truth question from data/orbisa/truth/questions.jsonl, e.g. Q01")
     parser.add_argument("--as-of", help="date the question is asked (YYYY-MM-DD); defaults to the truth item or today")
     parser.add_argument("--model", help="override HELIX_AGENT_MODEL")
+    parser.add_argument("--session", help="session ID for Langfuse grouping")
+    parser.add_argument("--user", default="workshop", help="user ID for Langfuse (default: workshop)")
     parser.add_argument("--json", action="store_true", help="print the full run as JSON")
     args = parser.parse_args()
 
@@ -35,7 +37,14 @@ def main() -> None:
         print("note: ANTHROPIC_API_KEY is empty, so the bundled Claude Code CLI will use your Claude login.", file=sys.stderr)
     check_helix()
 
-    run = asyncio.run(ask(question, as_of, model=args.model))
+    run = asyncio.run(ask(
+        question, as_of,
+        model=args.model,
+        session_id=args.session,
+        user_id=args.user,
+        question_id=args.id.upper() if args.id else None,
+        category=expected.get("category") if expected else None,
+    ))
     if args.json:
         print(run.to_json())
         return

@@ -2,6 +2,7 @@ from typing import Annotated
 
 from graphiti_core import Graphiti
 from mcp.server.mcpserver import MCPServer
+from mcp.server.mcpserver.context import Context
 from pydantic import Field
 
 from context import retrieval
@@ -25,11 +26,28 @@ def graph() -> Graphiti:
     return _graphiti
 
 
+def _trace_context(ctx: Context) -> dict | None:
+    """Parse W3C traceparent header from MCP request into a Langfuse TraceContext.
+
+    Returns None when no header is present so the observation becomes a clean root.
+    """
+    headers = dict(ctx.headers) if ctx.headers else {}
+    traceparent = headers.get("traceparent", "")
+    if not traceparent:
+        return None
+    parts = traceparent.split("-")
+    if len(parts) != 4:
+        return None
+    _, trace_id, span_id, _ = parts
+    return {"trace_id": trace_id, "parent_span_id": span_id}
+
+
 @mcp.tool()
 async def search_context(
     query: Annotated[str, Field(description="Natural-language question or keywords, e.g. 'who approves refunds'")],
     as_of: Annotated[str | None, Field(description="Date the question is asked, YYYY-MM-DD. Hides facts recorded later.")] = None,
     limit: Annotated[int, Field(ge=1, le=25, description="Maximum number of facts to return")] = 10,
+    ctx: Context = None,
 ) -> dict:
     """Search Orbisa's company knowledge for facts relevant to a question.
 
@@ -43,6 +61,7 @@ async def search_context(
     with lf.start_as_current_observation(
         name="neo4j-retrieval",
         as_type="retriever",
+        trace_context=_trace_context(ctx) if ctx else None,
         input={"query": query, "as_of": as_of, "limit": limit},
     ) as obs:
         result = await retrieval.search_facts(graph(), query, as_of=as_of, limit=limit)
@@ -78,6 +97,7 @@ async def search_context(
 async def find_entities(
     query: Annotated[str, Field(description="Name or description of a customer, person, policy, contract, plan or incident")],
     limit: Annotated[int, Field(ge=1, le=20, description="Maximum number of entities")] = 8,
+    ctx: Context = None,
 ) -> dict:
     """Look up entities (customers, people, teams, policies, contracts, plans, incidents) with their summaries.
 
@@ -89,6 +109,7 @@ async def find_entities(
     with lf.start_as_current_observation(
         name="neo4j-retrieval",
         as_type="retriever",
+        trace_context=_trace_context(ctx) if ctx else None,
         input={"query": query, "limit": limit},
     ) as obs:
         result = await retrieval.find_entities(graph(), query, limit=limit)
@@ -103,6 +124,7 @@ async def find_entities(
 @mcp.tool()
 async def read_source(
     path: Annotated[str, Field(description="Source path returned in a fact's sources, e.g. 'drive/Orion_Freight_Systems_MSA_2025-08-15.pdf'")],
+    ctx: Context = None,
 ) -> dict:
     """Read the original source document behind a fact (contract text, policy page, Slack day, ticket thread).
 
@@ -114,6 +136,7 @@ async def read_source(
     with lf.start_as_current_observation(
         name="read-source",
         as_type="tool",
+        trace_context=_trace_context(ctx) if ctx else None,
         input={"path": path},
     ) as obs:
         result = retrieval.read_source(path)
@@ -125,7 +148,7 @@ async def read_source(
 
 
 @mcp.tool()
-async def list_sources() -> dict:
+async def list_sources(ctx: Context = None) -> dict:
     """List every source document Helix knows about, grouped by system, with the date of each document."""
     lf = get_client()
     if lf is None:
@@ -134,6 +157,7 @@ async def list_sources() -> dict:
     with lf.start_as_current_observation(
         name="list-sources",
         as_type="tool",
+        trace_context=_trace_context(ctx) if ctx else None,
         input={},
     ) as obs:
         result = retrieval.list_sources()

@@ -8,9 +8,23 @@ Langfuse v4 sends all events via OTLP. Configure env vars before importing:
 """
 
 import os
+import re
 
 _client = None
 _checked = False
+
+_EMAIL_RE = re.compile(r"[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}")
+
+
+def _mask(data):
+    """Replace email addresses with <email> before sending to Langfuse."""
+    if isinstance(data, str):
+        return _EMAIL_RE.sub("<email>", data)
+    if isinstance(data, dict):
+        return {k: _mask(v) for k, v in data.items()}
+    if isinstance(data, list):
+        return [_mask(v) for v in data]
+    return data
 
 
 def get_client():
@@ -38,6 +52,8 @@ def get_client():
         public_key=public_key,
         secret_key=secret_key,
         host=base_url,
+        mask=_mask,
+        environment=os.environ.get("LANGFUSE_TRACING_ENVIRONMENT", "workshop"),
     )
     return _client
 
