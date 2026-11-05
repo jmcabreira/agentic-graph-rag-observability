@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="680" font-family="Inter,Segoe UI,system-ui,sans-serif">
+  <!-- Background -->
+  <rect width="1100" height="680" fill="#0f0f0f"/>
+
+  <!-- Sidebar -->
+  <rect x="0" y="0" width="200" height="680" fill="#171717"/>
+  <text x="20" y="36" fill="#888" font-size="11" font-weight="600" letter-spacing="1">LANGFUSE</text>
+  <rect x="8" y="52" width="184" height="30" rx="6" fill="#1f2937"/>
+  <text x="20" y="72" fill="#f3f4f6" font-size="13" font-weight="500">🔍 Tracing</text>
+  <text x="20" y="110" fill="#6b7280" font-size="13">📊 Scores</text>
+  <text x="20" y="140" fill="#6b7280" font-size="13">📝 Prompt Mgmt</text>
+  <text x="20" y="170" fill="#6b7280" font-size="13">📈 Metrics</text>
+
+  <!-- Main area -->
+  <rect x="200" y="0" width="900" height="680" fill="#0f0f0f"/>
+
+  <!-- Header -->
+  <text x="220" y="36" fill="#f3f4f6" font-size="20" font-weight="700">Traces</text>
+  <rect x="800" y="16" width="120" height="28" rx="6" fill="#1d4ed8"/>
+  <text x="840" y="34" fill="white" font-size="12" font-weight="600">+ New trace</text>
+
+  <!-- Filters bar -->
+  <rect x="220" y="52" width="860" height="36" rx="6" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="240" y="74" fill="#6b7280" font-size="12">🔎  Search traces...</text>
+  <rect x="600" y="58" width="90" height="24" rx="4" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+  <text x="618" y="74" fill="#9ca3af" font-size="11">Session ▾</text>
+  <rect x="700" y="58" width="80" height="24" rx="4" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+  <text x="718" y="74" fill="#9ca3af" font-size="11">User ▾</text>
+  <rect x="790" y="58" width="80" height="24" rx="4" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+  <text x="808" y="74" fill="#9ca3af" font-size="11">Tags ▾</text>
+
+  <!-- Table header -->
+  <rect x="220" y="98" width="860" height="28" rx="4" fill="#1a1a1a"/>
+  <text x="240" y="116" fill="#6b7280" font-size="11" font-weight="600">ID / NAME</text>
+  <text x="460" y="116" fill="#6b7280" font-size="11" font-weight="600">SESSION</text>
+  <text x="600" y="116" fill="#6b7280" font-size="11" font-weight="600">USER</text>
+  <text x="700" y="116" fill="#6b7280" font-size="11" font-weight="600">TAGS</text>
+  <text x="880" y="116" fill="#6b7280" font-size="11" font-weight="600">COST</text>
+  <text x="960" y="116" fill="#6b7280" font-size="11" font-weight="600">LATENCY</text>
+
+  <!-- Row 1 — production -->
+  <rect x="220" y="130" width="860" height="44" rx="4" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="240" y="149" fill="#93c5fd" font-size="12" font-weight="500">3c80ed9f7dd5...</text>
+  <text x="240" y="165" fill="#6b7280" font-size="10">2026-11-05 11:03  ask-orbisa</text>
+  <text x="460" y="155" fill="#d1d5db" font-size="12">sess-prod</text>
+  <text x="600" y="155" fill="#d1d5db" font-size="12">workshop</text>
+  <rect x="700" y="140" width="52" height="18" rx="9" fill="#14532d"/>
+  <text x="707" y="153" fill="#86efac" font-size="10" font-weight="600">Q01</text>
+  <rect x="758" y="140" width="68" height="18" rx="9" fill="#1e3a5f"/>
+  <text x="762" y="153" fill="#93c5fd" font-size="10" font-weight="600">production</text>
+  <rect x="832" y="140" width="82" height="18" rx="9" fill="#1f2937"/>
+  <text x="838" y="153" fill="#9ca3af" font-size="10">as-of:2026-10</text>
+  <text x="878" y="155" fill="#d1d5db" font-size="12">$0.1762</text>
+  <text x="960" y="155" fill="#d1d5db" font-size="12">291s</text>
+
+  <!-- Row 2 — staging -->
+  <rect x="220" y="180" width="860" height="44" rx="4" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="240" y="199" fill="#93c5fd" font-size="12" font-weight="500">0d721600922d...</text>
+  <text x="240" y="215" fill="#6b7280" font-size="10">2026-11-05 11:00  ask-orbisa</text>
+  <text x="460" y="205" fill="#d1d5db" font-size="12">sess-staging</text>
+  <text x="600" y="205" fill="#d1d5db" font-size="12">workshop</text>
+  <rect x="700" y="190" width="52" height="18" rx="9" fill="#14532d"/>
+  <text x="707" y="203" fill="#86efac" font-size="10" font-weight="600">Q01</text>
+  <rect x="758" y="190" width="56" height="18" rx="9" fill="#451a03"/>
+  <text x="765" y="203" fill="#fed7aa" font-size="10" font-weight="600">staging</text>
+  <rect x="820" y="190" width="82" height="18" rx="9" fill="#1f2937"/>
+  <text x="826" y="203" fill="#9ca3af" font-size="10">as-of:2026-10</text>
+  <text x="878" y="205" fill="#d1d5db" font-size="12">$0.1881</text>
+  <text x="960" y="205" fill="#d1d5db" font-size="12">277s</text>
+
+  <!-- Row 3 -->
+  <rect x="220" y="230" width="860" height="44" rx="4" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="240" y="249" fill="#6b7280" font-size="12">a3f7c12e0011...</text>
+  <text x="240" y="265" fill="#4b5563" font-size="10">2026-11-04 15:22  ask-orbisa</text>
+  <text x="460" y="255" fill="#6b7280" font-size="12">sess-01</text>
+  <text x="600" y="255" fill="#6b7280" font-size="12">workshop</text>
+  <text x="878" y="255" fill="#6b7280" font-size="12">$0.1544</text>
+  <text x="960" y="255" fill="#6b7280" font-size="12">245s</text>
+
+  <!-- ===== ANNOTATIONS ===== -->
+
+  <!-- Annotation 1: Tags com session e prompt label -->
+  <rect x="220" y="296" width="560" height="1" fill="#374151"/>
+  <!-- Arrow pointing to tags area in row 1 -->
+  <line x1="760" y1="149" x2="760" y2="290" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="755,290 760,302 765,290" fill="#f59e0b"/>
+  <rect x="560" y="306" width="400" height="52" rx="6" fill="#1c1700" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="572" y="323" fill="#fcd34d" font-size="11" font-weight="700">🏷 Tags automáticas — runner.py ask()</text>
+  <text x="572" y="340" fill="#d1d5db" font-size="11">question_id="Q01", category="anchor",</text>
+  <text x="572" y="355" fill="#d1d5db" font-size="11">prompt_label="production", as-of:2026-10-31</text>
+
+  <!-- Annotation 2: session column -->
+  <line x1="488" y1="174" x2="488" y2="380" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="483,380 488,392 493,380" fill="#34d399"/>
+  <rect x="220" y="395" width="360" height="52" rx="6" fill="#052e16" stroke="#34d399" stroke-width="1.5"/>
+  <text x="232" y="413" fill="#6ee7b7" font-size="11" font-weight="700">📦 session_id — --session flag no CLI</text>
+  <text x="232" y="430" fill="#d1d5db" font-size="11">docker run --rm agent --id Q01 --session sess-prod</text>
+  <text x="232" y="445" fill="#d1d5db" font-size="11">Agrupa múltiplas perguntas num mesmo contexto</text>
+
+  <!-- Annotation 3: cost/latency -->
+  <line x1="960" y1="174" x2="960" y2="460" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="955,460 960,472 965,460" fill="#c084fc"/>
+  <rect x="790" y="475" width="290" height="52" rx="6" fill="#1a0533" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="802" y="493" fill="#d8b4fe" font-size="11" font-weight="700">💰 Custo — ResultMessage.total_cost_usd</text>
+  <text x="802" y="510" fill="#d1d5db" font-size="11">model_usage → _record_model_usage()</text>
+  <text x="802" y="525" fill="#d1d5db" font-size="11">registrado em generation spans</text>
+
+  <!-- Annotation 4: duas linhas = dois prompts -->
+  <rect x="220" y="560" width="500" height="62" rx="6" fill="#0c1a2e" stroke="#3b82f6" stroke-width="1.5"/>
+  <line x1="470" y1="202" x2="380" y2="558" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="375,556 380,568 385,556" fill="#3b82f6"/>
+  <text x="232" y="578" fill="#93c5fd" font-size="11" font-weight="700">🔵 Dois traces = dois prompt labels</text>
+  <text x="232" y="595" fill="#d1d5db" font-size="11">production → ask-orbisa-system v1 (sem a nova regra)</text>
+  <text x="232" y="610" fill="#d1d5db" font-size="11">staging     → ask-orbisa-system v2 (com cláusula de contrato)</text>
+
+  <!-- Legend box -->
+  <rect x="790" y="560" width="290" height="80" rx="6" fill="#171717" stroke="#374151" stroke-width="1"/>
+  <text x="802" y="578" fill="#9ca3af" font-size="10" font-weight="700">IMPLEMENTADO EM</text>
+  <text x="802" y="596" fill="#6b7280" font-size="10">runner.py → ask()  propagate_attributes()</text>
+  <text x="802" y="612" fill="#6b7280" font-size="10">__main__.py → --session --user --prompt-label</text>
+  <text x="802" y="628" fill="#6b7280" font-size="10">push.py → --label production|staging</text>
+
+</svg>

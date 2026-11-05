@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="760" font-family="Inter,Segoe UI,system-ui,sans-serif">
+  <rect width="1100" height="760" fill="#0f0f0f"/>
+
+  <!-- Sidebar -->
+  <rect x="0" y="0" width="200" height="760" fill="#171717"/>
+  <text x="20" y="36" fill="#888" font-size="11" font-weight="600" letter-spacing="1">LANGFUSE</text>
+  <rect x="8" y="52" width="184" height="30" rx="6" fill="#1f2937"/>
+  <text x="20" y="72" fill="#f3f4f6" font-size="13" font-weight="500">🔍 Tracing</text>
+
+  <!-- Main area -->
+  <rect x="200" y="0" width="900" height="760" fill="#0f0f0f"/>
+
+  <!-- Header -->
+  <text x="220" y="34" fill="#6b7280" font-size="12">← Traces /</text>
+  <text x="286" y="34" fill="#f3f4f6" font-size="12">3c80ed9f7dd5...</text>
+  <text x="220" y="58" fill="#f3f4f6" font-size="18" font-weight="700">Trace detail</text>
+  <rect x="800" y="42" width="100" height="24" rx="4" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+  <text x="818" y="58" fill="#9ca3af" font-size="11">session: sess-prod</text>
+  <rect x="910" y="42" width="80" height="24" rx="4" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+  <text x="920" y="58" fill="#9ca3af" font-size="11">user: workshop</text>
+
+  <!-- Span tree -->
+  <!-- AGENT root -->
+  <rect x="220" y="78" width="560" height="32" rx="4" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <rect x="220" y="78" width="4" height="32" rx="2" fill="#3b82f6"/>
+  <text x="234" y="94" fill="#93c5fd" font-size="11" font-weight="700">[AGENT]</text>
+  <text x="286" y="94" fill="#f3f4f6" font-size="12" font-weight="600">agent</text>
+  <text x="286" y="106" fill="#6b7280" font-size="10">input: question, as_of  |  output: answer</text>
+  <text x="680" y="98" fill="#9ca3af" font-size="11">336s</text>
+
+  <!-- claude_code.interaction -->
+  <rect x="240" y="118" width="540" height="28" rx="4" fill="#1a1a2e" stroke="#6366f1" stroke-width="1"/>
+  <rect x="240" y="118" width="4" height="28" rx="2" fill="#6366f1"/>
+  <text x="254" y="130" fill="#a5b4fc" font-size="10" font-weight="700">[AGENT]</text>
+  <text x="306" y="130" fill="#d1d5db" font-size="11">claude_code.interaction</text>
+  <text x="254" y="142" fill="#6b7280" font-size="9">Claude Code CLI — gerado automaticamente via OTLP</text>
+  <text x="680" y="134" fill="#9ca3af" font-size="10">292s</text>
+
+  <!-- llm_request 1 -->
+  <rect x="260" y="154" width="520" height="24" rx="3" fill="#1a1a1a" stroke="#374151" stroke-width="1"/>
+  <rect x="260" y="154" width="3" height="24" rx="1" fill="#f59e0b"/>
+  <text x="272" y="167" fill="#fcd34d" font-size="10" font-weight="700">[GEN]</text>
+  <text x="306" y="167" fill="#d1d5db" font-size="11">claude_code.llm_request</text>
+  <text x="560" y="167" fill="#6b7280" font-size="10">claude-sonnet-4-5  in=12043/out=824</text>
+  <text x="680" y="167" fill="#9ca3af" font-size="10">7140ms</text>
+
+  <!-- search_context tool -->
+  <rect x="260" y="186" width="520" height="24" rx="3" fill="#1a1a1a" stroke="#374151" stroke-width="1"/>
+  <rect x="260" y="186" width="3" height="24" rx="1" fill="#10b981"/>
+  <text x="272" y="199" fill="#6ee7b7" font-size="10" font-weight="700">[TOOL]</text>
+  <text x="310" y="199" fill="#d1d5db" font-size="11">search_context</text>
+  <text x="560" y="199" fill="#6b7280" font-size="10">mcp__helix__search_context</text>
+  <text x="680" y="199" fill="#9ca3af" font-size="10">23141ms</text>
+
+  <!-- tool.execution inside search_context -->
+  <rect x="280" y="218" width="500" height="22" rx="3" fill="#141414" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="296" y="231" fill="#4b5563" font-size="10">[TOOL] claude_code.tool.execution</text>
+
+  <!-- neo4j-retrieval -->
+  <rect x="300" y="248" width="480" height="28" rx="4" fill="#0f1f2d" stroke="#0ea5e9" stroke-width="1"/>
+  <rect x="300" y="248" width="4" height="28" rx="2" fill="#0ea5e9"/>
+  <text x="314" y="260" fill="#7dd3fc" font-size="10" font-weight="700">[RETRIEVER]</text>
+  <text x="376" y="260" fill="#f3f4f6" font-size="11">neo4j-retrieval</text>
+  <text x="314" y="272" fill="#6b7280" font-size="9">input: query, as_of, limit  |  output: facts[]  |  source_systems: [neo4j]</text>
+  <text x="680" y="264" fill="#9ca3af" font-size="10">14808ms</text>
+
+  <!-- read_source tool -->
+  <rect x="260" y="284" width="520" height="24" rx="3" fill="#1a1a1a" stroke="#374151" stroke-width="1"/>
+  <rect x="260" y="284" width="3" height="24" rx="1" fill="#10b981"/>
+  <text x="272" y="297" fill="#6ee7b7" font-size="10" font-weight="700">[TOOL]</text>
+  <text x="310" y="297" fill="#d1d5db" font-size="11">read_source</text>
+  <text x="680" y="297" fill="#9ca3af" font-size="10">3550ms</text>
+
+  <!-- read-source child -->
+  <rect x="300" y="316" width="480" height="24" rx="3" fill="#141414" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="300" y="316" width="3" height="24" rx="1" fill="#10b981"/>
+  <text x="314" y="329" fill="#6ee7b7" font-size="10">[TOOL] read-source</text>
+  <text x="560" y="329" fill="#6b7280" font-size="9">path: drive/Orion_MSA.pdf</text>
+  <text x="680" y="329" fill="#9ca3af" font-size="10">99ms</text>
+
+  <!-- model-call generation -->
+  <rect x="240" y="348" width="540" height="24" rx="3" fill="#1a1a1a" stroke="#374151" stroke-width="1"/>
+  <rect x="240" y="348" width="3" height="24" rx="1" fill="#f59e0b"/>
+  <text x="252" y="361" fill="#fcd34d" font-size="10" font-weight="700">[GEN]</text>
+  <text x="286" y="361" fill="#d1d5db" font-size="11">model-call</text>
+  <text x="460" y="361" fill="#6b7280" font-size="10">claude-sonnet-4-5  aggregated usage  $0.08</text>
+  <text x="680" y="361" fill="#9ca3af" font-size="10">180ms</text>
+
+  <!-- divider -->
+  <line x1="220" y1="390" x2="800" y2="390" stroke="#2a2a2a" stroke-width="1"/>
+
+  <!-- ===== ANNOTATIONS ===== -->
+
+  <!-- Annotation 1: AGENT root span — nosso ask() -->
+  <line x1="784" y1="94" x2="860" y2="94" stroke="#3b82f6" stroke-width="1.5"/>
+  <line x1="860" y1="94" x2="860" y2="140" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="800" y="104" width="280" height="64" rx="6" fill="#0c1a2e" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="812" y="122" fill="#93c5fd" font-size="11" font-weight="700">runner.py — ask()</text>
+  <text x="812" y="138" fill="#d1d5db" font-size="10">lf.start_as_current_observation(</text>
+  <text x="812" y="152" fill="#d1d5db" font-size="10">  name="agent", as_type="agent")</text>
+  <text x="812" y="166" fill="#6b7280" font-size="10">↳ cria o span raiz da nossa query</text>
+
+  <!-- Annotation 2: claude_code.interaction — OTLP do CLI -->
+  <line x1="784" y1="134" x2="860" y2="134" stroke="#6366f1" stroke-width="1.5"/>
+  <line x1="860" y1="134" x2="860" y2="210" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="800" y="186" width="280" height="52" rx="6" fill="#12123a" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="812" y="204" fill="#a5b4fc" font-size="11" font-weight="700">Claude Code CLI → OTLP</text>
+  <text x="812" y="220" fill="#d1d5db" font-size="10">otel_env.py seta OTEL_EXPORTER vars</text>
+  <text x="812" y="232" fill="#d1d5db" font-size="10">ClaudeAgentOptions(env=agent_env())</text>
+
+  <!-- Annotation 3: neo4j-retrieval — Helix MCP -->
+  <line x1="784" y1="264" x2="860" y2="264" stroke="#0ea5e9" stroke-width="1.5"/>
+  <line x1="860" y1="264" x2="860" y2="310" stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="800" y="284" width="280" height="64" rx="6" fill="#071e2e" stroke="#0ea5e9" stroke-width="1.5"/>
+  <text x="812" y="302" fill="#7dd3fc" font-size="11" font-weight="700">server.py — search_context()</text>
+  <text x="812" y="318" fill="#d1d5db" font-size="10">trace_context=_trace_context(ctx)</text>
+  <text x="812" y="330" fill="#d1d5db" font-size="10">↳ usa traceparent header para ligar</text>
+  <text x="812" y="342" fill="#d1d5db" font-size="10">   ao span pai do CLI (increment 3)</text>
+
+  <!-- Annotation 4: model-call -->
+  <line x1="784" y1="361" x2="860" y2="361" stroke="#f59e0b" stroke-width="1.5"/>
+  <line x1="860" y1="361" x2="860" y2="430" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="800" y="400" width="280" height="64" rx="6" fill="#1c1700" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="812" y="418" fill="#fcd34d" font-size="11" font-weight="700">runner.py — _record_model_usage()</text>
+  <text x="812" y="434" fill="#d1d5db" font-size="10">ResultMessage.model_usage → por modelo</text>
+  <text x="812" y="446" fill="#d1d5db" font-size="10">inputTokens, outputTokens, costUSD</text>
+  <text x="812" y="458" fill="#6b7280" font-size="10">(increment 2 — Option 3)</text>
+
+  <!-- Bottom: metadata panel mockup -->
+  <rect x="220" y="400" width="560" height="130" rx="6" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="234" y="418" fill="#6b7280" font-size="11" font-weight="600">METADATA — observação [AGENT] agent</text>
+  <line x1="234" y1="424" x2="770" y2="424" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="234" y="442" fill="#6b7280" font-size="10">cost_usd</text>
+  <text x="380" y="442" fill="#d1d5db" font-size="10">0.1762</text>
+  <text x="234" y="458" fill="#6b7280" font-size="10">duration_ms</text>
+  <text x="380" y="458" fill="#d1d5db" font-size="10">291234</text>
+  <text x="234" y="474" fill="#6b7280" font-size="10">num_turns</text>
+  <text x="380" y="474" fill="#d1d5db" font-size="10">14</text>
+  <text x="234" y="490" fill="#fcd34d" font-size="10" font-weight="600">prompt_name</text>
+  <text x="380" y="490" fill="#fcd34d" font-size="10">ask-orbisa-system</text>
+  <text x="234" y="506" fill="#fcd34d" font-size="10" font-weight="600">prompt_label</text>
+  <text x="380" y="506" fill="#fcd34d" font-size="10">production</text>
+  <text x="234" y="522" fill="#fcd34d" font-size="10" font-weight="600">prompt_version</text>
+  <text x="380" y="522" fill="#fcd34d" font-size="10">1</text>
+
+  <!-- Arrow pointing to metadata -->
+  <line x1="600" y1="490" x2="720" y2="560" stroke="#fcd34d" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="715,562 720,574 725,562" fill="#fcd34d"/>
+  <rect x="680" y="576" width="300" height="52" rx="6" fill="#1c1700" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="692" y="594" fill="#fcd34d" font-size="11" font-weight="700">obs.update(metadata={...})</text>
+  <text x="692" y="610" fill="#d1d5db" font-size="10">runner.py → fetch_prompt() preenche</text>
+  <text x="692" y="622" fill="#d1d5db" font-size="10">prompt_name, label, version, source</text>
+
+  <!-- Legend -->
+  <rect x="220" y="648" width="860" height="88" rx="6" fill="#171717" stroke="#374151" stroke-width="1"/>
+  <text x="234" y="666" fill="#9ca3af" font-size="10" font-weight="700">LEGENDA DE CORES</text>
+  <rect x="234" y="676" width="10" height="10" rx="2" fill="#3b82f6"/>
+  <text x="250" y="685" fill="#9ca3af" font-size="10">AGENT — nosso span raiz (ask)</text>
+  <rect x="234" y="696" width="10" height="10" rx="2" fill="#6366f1"/>
+  <text x="250" y="705" fill="#9ca3af" font-size="10">AGENT — gerado pelo Claude Code CLI via OTLP</text>
+  <rect x="420" y="676" width="10" height="10" rx="2" fill="#0ea5e9"/>
+  <text x="436" y="685" fill="#9ca3af" font-size="10">RETRIEVER — nosso span Helix MCP (increment 1)</text>
+  <rect x="420" y="696" width="10" height="10" rx="2" fill="#f59e0b"/>
+  <text x="436" y="705" fill="#9ca3af" font-size="10">GENERATION — model-call com tokens+custo (increment 2)</text>
+  <rect x="700" y="676" width="10" height="10" rx="2" fill="#10b981"/>
+  <text x="716" y="685" fill="#9ca3af" font-size="10">TOOL — helix tools com traceparent (increment 3)</text>
+
+</svg>
