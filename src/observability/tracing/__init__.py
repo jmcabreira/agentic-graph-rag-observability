@@ -10,6 +10,12 @@ Langfuse v4 sends all events via OTLP. Configure env vars before importing:
 import os
 import re
 
+try:
+    from dotenv import load_dotenv as _load_dotenv
+    _load_dotenv()
+except ImportError:
+    pass
+
 _client = None
 _checked = False
 
