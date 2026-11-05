@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" font-family="Inter,Segoe UI,system-ui,sans-serif">
+  <rect width="1200" height="780" fill="#0f0f0f"/>
+
+  <text x="600" y="36" fill="#f3f4f6" font-size="17" font-weight="700" text-anchor="middle">Langfuse — Datasets e Experimentos</text>
+  <text x="600" y="56" fill="#6b7280" font-size="12" text-anchor="middle">Prova com gabarito automático — cada pergunta tem resposta esperada, e o sistema corrige sozinho</text>
+
+  <!-- Sidebar -->
+  <rect x="0" y="70" width="180" height="710" fill="#171717"/>
+  <text x="16" y="102" fill="#888" font-size="11" font-weight="600">LANGFUSE</text>
+  <text x="16" y="130" fill="#6b7280" font-size="12">🔍 Tracing</text>
+  <text x="16" y="156" fill="#6b7280" font-size="12">📝 Prompts</text>
+  <rect x="8" y="166" width="164" height="28" rx="6" fill="#1f2937"/>
+  <text x="16" y="184" fill="#f3f4f6" font-size="12">🗄  Datasets</text>
+  <text x="16" y="210" fill="#6b7280" font-size="12">📊 Scores</text>
+
+  <!-- ══ DATASET LIST ══ -->
+  <text x="196" y="94" fill="#9ca3af" font-size="11" font-weight="600">DATASETS CADASTRADOS</text>
+
+  <rect x="196" y="102" width="490" height="52" rx="6" fill="#171717" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="196" y="102" width="4" height="52" rx="2" fill="#3b82f6"/>
+  <text x="210" y="124" fill="#f3f4f6" font-size="13" font-weight="700">orbisa-truth</text>
+  <text x="210" y="142" fill="#6b7280" font-size="11">22-question Orbisa RAG benchmark</text>
+  <text x="596" y="132" fill="#6b7280" font-size="11">22 itens</text>
+
+  <!-- ══ DATASET ITEMS ══ -->
+  <text x="196" y="178" fill="#9ca3af" font-size="11" font-weight="600">ITENS DO DATASET — orbisa-truth</text>
+
+  <rect x="196" y="186" width="490" height="28" rx="4" fill="#1a1a1a"/>
+  <text x="212" y="204" fill="#6b7280" font-size="10" font-weight="600">ID</text>
+  <text x="264" y="204" fill="#6b7280" font-size="10" font-weight="600">CATEGORIA</text>
+  <text x="380" y="204" fill="#6b7280" font-size="10" font-weight="600">PERGUNTA</text>
+
+  <!-- Q01 row -->
+  <rect x="196" y="220" width="490" height="38" rx="3" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="212" y="234" fill="#93c5fd" font-size="11" font-weight="700">Q01</text>
+  <rect x="264" y="224" width="52" height="16" rx="8" fill="#14532d"/>
+  <text x="270" y="235" fill="#86efac" font-size="9">anchor</text>
+  <text x="324" y="234" fill="#d1d5db" font-size="10">Orion é elegível para reembolso 45 dias após…</text>
+  <text x="212" y="250" fill="#374151" font-size="9">as_of: 2026-09-29  |  armadilha: usar política de 2023…</text>
+
+  <!-- Q02 row -->
+  <rect x="196" y="262" width="490" height="38" rx="3" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="212" y="276" fill="#93c5fd" font-size="11" font-weight="700">Q02</text>
+  <rect x="264" y="266" width="62" height="16" rx="8" fill="#1c1700"/>
+  <text x="270" y="277" fill="#fcd34d" font-size="9">temporal</text>
+  <text x="334" y="276" fill="#d1d5db" font-size="10">Quem aprova reembolsos na Orbisa? (2026-10)…</text>
+  <text x="212" y="292" fill="#374151" font-size="9">as_of: 2026-10-15  |  armadilha: Confluence diz Finance…</text>
+
+  <!-- Q14 row (false_premise) -->
+  <rect x="196" y="304" width="490" height="38" rx="3" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="212" y="318" fill="#93c5fd" font-size="11" font-weight="700">Q14</text>
+  <rect x="264" y="308" width="80" height="16" rx="8" fill="#1a0533"/>
+  <text x="270" y="319" fill="#d8b4fe" font-size="9">false_premise</text>
+  <text x="352" y="318" fill="#d1d5db" font-size="10">Quando o reembolso da Orion foi aprovado?…</text>
+  <text x="212" y="334" fill="#374151" font-size="9">O reembolso NUNCA foi aprovado — premissa falsa</text>
+
+  <text x="212" y="358" fill="#6b7280" font-size="10">… + 19 perguntas (Q03–Q22)</text>
+
+  <!-- ══ RUNS COMPARISON ══ -->
+  <text x="196" y="386" fill="#9ca3af" font-size="11" font-weight="600">RUNS — COMPARAÇÃO production vs staging</text>
+
+  <!-- Run header -->
+  <rect x="196" y="394" width="490" height="28" rx="4" fill="#1a1a1a"/>
+  <text x="212" y="412" fill="#6b7280" font-size="10" font-weight="600">MÉTRICA</text>
+  <text x="380" y="412" fill="#93c5fd" font-size="10" font-weight="600">production (v1)</text>
+  <text x="490" y="412" fill="#fed7aa" font-size="10" font-weight="600">staging (v2)</text>
+
+  <!-- metrics rows -->
+  <rect x="196" y="426" width="490" height="26" rx="2" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="212" y="443" fill="#d1d5db" font-size="11">Acurácia geral</text>
+  <text x="380" y="443" fill="#93c5fd" font-size="12" font-weight="700">78%</text>
+  <text x="490" y="443" fill="#fed7aa" font-size="12" font-weight="700">86%</text>
+
+  <rect x="196" y="456" width="490" height="26" rx="2" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="212" y="473" fill="#d1d5db" font-size="11">Acurácia — temporal</text>
+  <text x="380" y="473" fill="#93c5fd" font-size="11">60%</text>
+  <text x="490" y="473" fill="#fed7aa" font-size="11">80%</text>
+
+  <rect x="196" y="486" width="490" height="26" rx="2" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="212" y="503" fill="#d1d5db" font-size="11">Recall de fontes</text>
+  <text x="380" y="503" fill="#93c5fd" font-size="11">82%</text>
+  <text x="490" y="503" fill="#fed7aa" font-size="11">85%</text>
+
+  <rect x="196" y="516" width="490" height="26" rx="2" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="212" y="533" fill="#d1d5db" font-size="11">Custo médio / pergunta</text>
+  <text x="380" y="533" fill="#9ca3af" font-size="11">$0.18</text>
+  <text x="490" y="533" fill="#9ca3af" font-size="11">$0.19</text>
+
+  <rect x="196" y="546" width="490" height="26" rx="2" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="212" y="563" fill="#d1d5db" font-size="11">Latência p95</text>
+  <text x="380" y="563" fill="#9ca3af" font-size="11">305s</text>
+  <text x="490" y="563" fill="#9ca3af" font-size="11">289s</text>
+
+  <!-- source gap warning -->
+  <rect x="196" y="584" width="490" height="52" rx="6" fill="#1c0a00" stroke="#f97316" stroke-width="1.5"/>
+  <text x="212" y="604" fill="#fb923c" font-size="11" font-weight="700">⚠  Recall capped em Q01, Q06, Q14, Q18, Q22</text>
+  <text x="212" y="620" fill="#9ca3af" font-size="10">5 perguntas têm fontes esperadas que o Helix não serve (zendesk, gong, hubspot).</text>
+  <text x="212" y="634" fill="#9ca3af" font-size="10">Use acurácia (correctness) como métrica principal para comparar versões.</text>
+
+  <!-- ══ RIGHT PANEL — ANNOTATIONS ══ -->
+
+  <!-- Ann 1: o que é o dataset -->
+  <rect x="720" y="96" width="460" height="120" rx="8" fill="#0c1a2e" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="736" y="116" fill="#93c5fd" font-size="12" font-weight="700">🗄  O que é o Dataset?</text>
+  <text x="736" y="134" fill="#d1d5db" font-size="11">É uma "prova com gabarito" armazenada no</text>
+  <text x="736" y="150" fill="#d1d5db" font-size="11">Langfuse. Cada item tem a pergunta, a resposta</text>
+  <text x="736" y="166" fill="#d1d5db" font-size="11">correta esperada, as fontes que devem ser citadas</text>
+  <text x="736" y="182" fill="#d1d5db" font-size="11">e a "armadilha" — o erro clássico do modelo.</text>
+  <text x="736" y="202" fill="#6b7280" font-size="10">→ Menu Datasets → orbisa-truth → 22 itens</text>
+
+  <!-- Ann 2: os corretores -->
+  <rect x="720" y="228" width="460" height="156" rx="8" fill="#171717" stroke="#374151" stroke-width="1.5"/>
+  <text x="736" y="248" fill="#9ca3af" font-size="12" font-weight="700">✏  Quem corrige as respostas?</text>
+  <line x1="736" y1="254" x2="1170" y2="254" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="736" y="272" fill="#6ee7b7" font-size="11" font-weight="600">Corretor de código (grátis, rápido):</text>
+  <text x="736" y="288" fill="#d1d5db" font-size="11">• Tem uma seção "Fontes:" na resposta?</text>
+  <text x="736" y="304" fill="#d1d5db" font-size="11">• As fontes esperadas aparecem na resposta?</text>
+  <text x="736" y="320" fill="#d1d5db" font-size="11">• (Premissa falsa) O agente reconheceu o erro?</text>
+  <line x1="736" y1="328" x2="1170" y2="328" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="736" y="346" fill="#fcd34d" font-size="11" font-weight="600">Juiz LLM (claude-sonnet-5-5):</text>
+  <text x="736" y="362" fill="#d1d5db" font-size="11">Lê a resposta + os fatos esperados + a armadilha</text>
+  <text x="736" y="378" fill="#d1d5db" font-size="11">→ devolve: correto / parcialmente / incorreto + motivo</text>
+
+  <!-- Ann 3: a comparação -->
+  <rect x="720" y="396" width="460" height="120" rx="8" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>
+  <text x="736" y="416" fill="#6ee7b7" font-size="12" font-weight="700">📊  Para que serve a aba Runs?</text>
+  <text x="736" y="434" fill="#d1d5db" font-size="11">Cada vez que você roda o experimento, um Run é</text>
+  <text x="736" y="450" fill="#d1d5db" font-size="11">criado. Você consegue comparar dois Runs lado a</text>
+  <text x="736" y="466" fill="#d1d5db" font-size="11">lado — exemplo: mesmas 22 perguntas com instrução</text>
+  <text x="736" y="482" fill="#d1d5db" font-size="11">production e com staging — e ver item por item o</text>
+  <text x="736" y="498" fill="#d1d5db" font-size="11">que mudou na nota.</text>
+
+  <!-- Ann 4: source gap -->
+  <rect x="720" y="528" width="460" height="108" rx="8" fill="#1c0a00" stroke="#f97316" stroke-width="1.5"/>
+  <text x="736" y="548" fill="#fb923c" font-size="12" font-weight="700">⚠  Por que o recall de fontes nunca chega a 100%?</text>
+  <text x="736" y="566" fill="#d1d5db" font-size="11">O gabarito diz que certas fontes (zendesk, gong,</text>
+  <text x="736" y="582" fill="#d1d5db" font-size="11">hubspot) deveriam ser citadas — mas esses arquivos</text>
+  <text x="736" y="598" fill="#d1d5db" font-size="11">não estão no Helix. O agente nunca consegue lê-los,</text>
+  <text x="736" y="614" fill="#d1d5db" font-size="11">então sempre perde pontos de fonte nessas questões.</text>
+  <text x="736" y="630" fill="#6b7280" font-size="10">Gap do sistema, não erro do benchmark. Corrigir = expor esses arquivos no Helix.</text>
+
+  <!-- ══ BOTTOM: flow diagram ══ -->
+  <rect x="196" y="650" width="984" height="100" rx="10" fill="#171717" stroke="#374151" stroke-width="1.5"/>
+  <text x="600" y="672" fill="#f3f4f6" font-size="12" font-weight="700" text-anchor="middle">🔄  Como um experimento funciona (da pergunta à nota)</text>
+  <line x1="216" y1="678" x2="1170" y2="678" stroke="#2a2a2a" stroke-width="1"/>
+
+  <!-- step boxes -->
+  <rect x="216" y="686" width="140" height="52" rx="6" fill="#0c1a2e" stroke="#3b82f6" stroke-width="1"/>
+  <text x="286" y="706" fill="#93c5fd" font-size="10" text-anchor="middle">① Pega item</text>
+  <text x="286" y="720" fill="#6b7280" font-size="9" text-anchor="middle">do dataset</text>
+  <text x="286" y="732" fill="#6b7280" font-size="9" text-anchor="middle">(pergunta + gabarito)</text>
+
+  <text x="368" y="716" fill="#374151" font-size="16">→</text>
+
+  <rect x="384" y="686" width="140" height="52" rx="6" fill="#12123a" stroke="#6366f1" stroke-width="1"/>
+  <text x="454" y="706" fill="#a5b4fc" font-size="10" text-anchor="middle">② Pergunta</text>
+  <text x="454" y="720" fill="#6b7280" font-size="9" text-anchor="middle">pro agente</text>
+  <text x="454" y="732" fill="#6b7280" font-size="9" text-anchor="middle">(ask + Helix)</text>
+
+  <text x="536" y="716" fill="#374151" font-size="16">→</text>
+
+  <rect x="552" y="686" width="140" height="52" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1"/>
+  <text x="622" y="706" fill="#6ee7b7" font-size="10" text-anchor="middle">③ Corretores</text>
+  <text x="622" y="720" fill="#6b7280" font-size="9" text-anchor="middle">rodam em paralelo</text>
+  <text x="622" y="732" fill="#6b7280" font-size="9" text-anchor="middle">(código + juiz LLM)</text>
+
+  <text x="704" y="716" fill="#374151" font-size="16">→</text>
+
+  <rect x="720" y="686" width="140" height="52" rx="6" fill="#1c1700" stroke="#f59e0b" stroke-width="1"/>
+  <text x="790" y="706" fill="#fcd34d" font-size="10" text-anchor="middle">④ Nota gravada</text>
+  <text x="790" y="720" fill="#6b7280" font-size="9" text-anchor="middle">no Langfuse</text>
+  <text x="790" y="732" fill="#6b7280" font-size="9" text-anchor="middle">(trace + scores)</text>
+
+  <text x="872" y="716" fill="#374151" font-size="16">→</text>
+
+  <rect x="888" y="686" width="140" height="52" rx="6" fill="#1a0533" stroke="#c084fc" stroke-width="1"/>
+  <text x="958" y="706" fill="#d8b4fe" font-size="10" text-anchor="middle">⑤ Run criado</text>
+  <text x="958" y="720" fill="#6b7280" font-size="9" text-anchor="middle">métricas agregadas</text>
+  <text x="958" y="732" fill="#6b7280" font-size="9" text-anchor="middle">(compare no UI)</text>
+
+  <text x="1040" y="716" fill="#374151" font-size="16">→</text>
+  <text x="1056" y="706" fill="#6b7280" font-size="9">repete</text>
+  <text x="1056" y="720" fill="#6b7280" font-size="9">para os</text>
+  <text x="1056" y="734" fill="#6b7280" font-size="9">22 itens</text>
+
+</svg>
