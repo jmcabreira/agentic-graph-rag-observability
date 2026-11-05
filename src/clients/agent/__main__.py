@@ -21,6 +21,7 @@ def main() -> None:
     parser.add_argument("--model", help="override HELIX_AGENT_MODEL")
     parser.add_argument("--session", help="session ID for Langfuse grouping")
     parser.add_argument("--user", default="workshop", help="user ID for Langfuse (default: workshop)")
+    parser.add_argument("--prompt-label", help="Langfuse prompt label to use (default: production)")
     parser.add_argument("--json", action="store_true", help="print the full run as JSON")
     args = parser.parse_args()
 
@@ -42,6 +43,7 @@ def main() -> None:
         model=args.model,
         session_id=args.session,
         user_id=args.user,
+        prompt_label=args.prompt_label,
         question_id=args.id.upper() if args.id else None,
         category=expected.get("category") if expected else None,
     ))

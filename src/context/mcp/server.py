@@ -7,6 +7,7 @@ from pydantic import Field
 
 from context import retrieval
 from context.graph import build_graphiti
+from observability.prompts.fetch import fetch as fetch_prompt
 from observability.tracing import get_client
 
 INSTRUCTIONS = """Helix is Orbisa's context engine. It holds facts extracted from Slack, Confluence, the
@@ -15,6 +16,12 @@ Facts carry validity dates and the source documents they came from. Prefer facts
 the question's as-of date, check conflicting facts against the original source, and cite sources."""
 
 mcp = MCPServer("helix", instructions=INSTRUCTIONS, version="0.1.0")
+
+
+def _tool_description(tool_name: str, fallback: str) -> str:
+    """Fetch tool description from Langfuse; return fallback docstring on any error."""
+    pr = fetch_prompt(f"helix-tool-{tool_name}", fallback_text=fallback)
+    return pr.text
 
 _graphiti: Graphiti | None = None
 
@@ -42,18 +49,20 @@ def _trace_context(ctx: Context) -> dict | None:
     return {"trace_id": trace_id, "parent_span_id": span_id}
 
 
-@mcp.tool()
+_DESC_SEARCH_CONTEXT = (
+    "Search Orbisa's company knowledge for facts relevant to a question.\n\n"
+    "Returns facts with a status (current, superseded, true on as_of, no longer true on as_of),\n"
+    "validity dates, and the source documents each fact came from. Call it several times with\n"
+    "different queries for questions that span customers, contracts, policies and people."
+)
+
+@mcp.tool(description=_tool_description("search_context", _DESC_SEARCH_CONTEXT))
 async def search_context(
     query: Annotated[str, Field(description="Natural-language question or keywords, e.g. 'who approves refunds'")],
     as_of: Annotated[str | None, Field(description="Date the question is asked, YYYY-MM-DD. Hides facts recorded later.")] = None,
     limit: Annotated[int, Field(ge=1, le=25, description="Maximum number of facts to return")] = 10,
     ctx: Context = None,
 ) -> dict:
-    """Search Orbisa's company knowledge for facts relevant to a question.
-
-    Returns facts with a status (current, superseded, true on as_of, no longer true on as_of),
-    validity dates, and the source documents each fact came from. Call it several times with
-    different queries for questions that span customers, contracts, policies and people."""
     lf = get_client()
     if lf is None:
         return await retrieval.search_facts(graph(), query, as_of=as_of, limit=limit)
@@ -93,15 +102,17 @@ async def search_context(
     return result
 
 
-@mcp.tool()
+_DESC_FIND_ENTITIES = (
+    "Look up entities (customers, people, teams, policies, contracts, plans, incidents) with their summaries.\n\n"
+    "Use it to resolve names and aliases, for example a Slack nickname to a person's full name."
+)
+
+@mcp.tool(description=_tool_description("find_entities", _DESC_FIND_ENTITIES))
 async def find_entities(
     query: Annotated[str, Field(description="Name or description of a customer, person, policy, contract, plan or incident")],
     limit: Annotated[int, Field(ge=1, le=20, description="Maximum number of entities")] = 8,
     ctx: Context = None,
 ) -> dict:
-    """Look up entities (customers, people, teams, policies, contracts, plans, incidents) with their summaries.
-
-    Use it to resolve names and aliases, for example a Slack nickname to a person's full name."""
     lf = get_client()
     if lf is None:
         return await retrieval.find_entities(graph(), query, limit=limit)
@@ -121,14 +132,16 @@ async def find_entities(
     return result
 
 
-@mcp.tool()
+_DESC_READ_SOURCE = (
+    "Read the original source document behind a fact (contract text, policy page, Slack day, ticket thread).\n\n"
+    "Use it to verify exact wording, numbers and dates before answering."
+)
+
+@mcp.tool(description=_tool_description("read_source", _DESC_READ_SOURCE))
 async def read_source(
     path: Annotated[str, Field(description="Source path returned in a fact's sources, e.g. 'drive/Orion_Freight_Systems_MSA_2025-08-15.pdf'")],
     ctx: Context = None,
 ) -> dict:
-    """Read the original source document behind a fact (contract text, policy page, Slack day, ticket thread).
-
-    Use it to verify exact wording, numbers and dates before answering."""
     lf = get_client()
     if lf is None:
         return retrieval.read_source(path)
@@ -147,9 +160,12 @@ async def read_source(
     return result
 
 
-@mcp.tool()
+_DESC_LIST_SOURCES = (
+    "List every source document Helix knows about, grouped by system, with the date of each document."
+)
+
+@mcp.tool(description=_tool_description("list_sources", _DESC_LIST_SOURCES))
 async def list_sources(ctx: Context = None) -> dict:
-    """List every source document Helix knows about, grouped by system, with the date of each document."""
     lf = get_client()
     if lf is None:
         return retrieval.list_sources()

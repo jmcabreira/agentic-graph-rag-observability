@@ -7,6 +7,7 @@ import httpx
 from claude_agent_sdk import AssistantMessage, ClaudeAgentOptions, ResultMessage, TextBlock, ToolUseBlock, query
 
 from context.config import DATA_DIR, settings
+from observability.prompts.fetch import PromptResult, fetch as fetch_prompt
 from observability.tracing import get_client
 from observability.tracing.otel_env import otel_env
 
@@ -15,7 +16,8 @@ try:
 except ImportError:
     propagate_attributes = None
 
-SYSTEM_PROMPT = Path(__file__).with_name("system_prompt.md").read_text()
+_LOCAL_SYSTEM_PROMPT = Path(__file__).with_name("system_prompt.md").read_text()
+SYSTEM_PROMPT = _LOCAL_SYSTEM_PROMPT  # module-level default; ask() may override per-call
 TRUTH_FILE = DATA_DIR / "truth" / "questions.jsonl"
 
 
@@ -131,16 +133,23 @@ async def ask(
     question: str,
     as_of: str,
     model: str | None = None,
-    system_prompt: str = SYSTEM_PROMPT,
+    system_prompt: str | None = None,
     session_id: str | None = None,
     user_id: str = "workshop",
     tags: list[str] | None = None,
     question_id: str | None = None,
     category: str | None = None,
+    prompt_label: str | None = None,
 ) -> AgentRun:
+    pr: PromptResult = fetch_prompt(
+        "ask-orbisa-system",
+        fallback_text=system_prompt or _LOCAL_SYSTEM_PROMPT,
+        label=prompt_label,
+    )
+
     lf = get_client()
     if lf is None:
-        run, _ = await _run_query(question, as_of, model, system_prompt)
+        run, _ = await _run_query(question, as_of, model, pr.text)
         return run
 
     _tags = list(tags or [])
@@ -164,12 +173,20 @@ async def ask(
         if ctx_mgr:
             ctx_mgr.__enter__()
         try:
-            run, result = await _run_query(question, as_of, model, system_prompt)
+            run, result = await _run_query(question, as_of, model, pr.text)
             if result is not None:
                 _record_model_usage(lf, result)
             obs.update(
                 output={"answer": run.answer[:1000]},
-                metadata={"cost_usd": run.cost_usd, "duration_ms": run.duration_ms, "num_turns": run.num_turns},
+                metadata={
+                    "cost_usd": run.cost_usd,
+                    "duration_ms": run.duration_ms,
+                    "num_turns": run.num_turns,
+                    "prompt_name": pr.name,
+                    "prompt_label": pr.label,
+                    "prompt_version": pr.version,
+                    "prompt_source": pr.source,
+                },
             )
         finally:
             if ctx_mgr:
