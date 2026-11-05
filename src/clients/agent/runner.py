@@ -227,6 +227,8 @@ async def ask(
                     "prompt_label": pr.label,
                     "prompt_version": pr.version,
                     "prompt_source": pr.source,
+                    "helix_facts": run.retrieved_facts,
+                    "helix_sources_read": run.source_paths,
                 },
             )
         finally:
