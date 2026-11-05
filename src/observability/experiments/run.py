@@ -56,12 +56,14 @@ def _run_metrics(*, item_results: list, **kw) -> list[dict]:
             all_latency_ms.append(dur)
 
         for ev in ir.evaluations:
-            if ev["name"] == "correctness" and ev["value"] is not None:
-                v = float(ev["value"])
+            name = ev.name if hasattr(ev, "name") else ev["name"]
+            value = ev.value if hasattr(ev, "value") else ev["value"]
+            if name == "correctness" and value is not None:
+                v = float(value)
                 all_correctness.append(v)
                 scores_by_cat.setdefault(category, []).append(v)
-            if ev["name"] == "source_recall" and ev["value"] is not None:
-                all_recall.append(float(ev["value"]))
+            if name == "source_recall" and value is not None:
+                all_recall.append(float(value))
 
     if all_correctness:
         evals.append({"name": "mean_correctness", "value": round(statistics.mean(all_correctness), 3)})
@@ -89,15 +91,18 @@ def _run_metrics(*, item_results: list, **kw) -> list[dict]:
 
 def _get_correctness(ir) -> float | None:
     for ev in ir.evaluations:
-        if ev["name"] == "correctness":
-            return ev["value"]
+        name = ev.name if hasattr(ev, "name") else ev["name"]
+        value = ev.value if hasattr(ev, "value") else ev["value"]
+        if name == "correctness":
+            return value
     return None
 
 
 # ── task ─────────────────────────────────────────────────────────────────────
 
 def _make_task(prompt_label: str | None, model: str | None):
-    async def task(input: Any, **kw) -> dict:
+    async def task(*, item: Any, **kw) -> dict:
+        input = item.input if hasattr(item, "input") else item
         inp = input if isinstance(input, dict) else {"question": str(input), "as_of": ""}
         run: AgentRun = await ask(
             question=inp["question"],
@@ -114,12 +119,14 @@ def _make_task(prompt_label: str | None, model: str | None):
 # ── summary ──────────────────────────────────────────────────────────────────
 
 def _build_summary(result, name: str, prompt_label: str | None) -> dict:
-    run_evals = {e["name"]: e["value"] for e in (result.run_evaluations or [])}
+    def _ev_name(e): return e.name if hasattr(e, "name") else e["name"]
+    def _ev_value(e): return e.value if hasattr(e, "value") else e["value"]
+    run_evals = {_ev_name(e): _ev_value(e) for e in (result.run_evaluations or [])}
     items = []
     for ir in result.item_results:
         item = ir.item
         meta = (item.metadata if hasattr(item, "metadata") else item.get("metadata")) or {}
-        item_evals = {e["name"]: e["value"] for e in ir.evaluations}
+        item_evals = {_ev_name(e): _ev_value(e) for e in ir.evaluations}
         items.append({
             "id": meta.get("id", ""),
             "category": meta.get("category", ""),

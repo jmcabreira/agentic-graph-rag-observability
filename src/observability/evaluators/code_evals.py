@@ -46,7 +46,7 @@ def source_recall(*, input: Any, output: Any, expected_output: Any, metadata: An
     recorded in the AgentRun.
     """
     if expected_output is None:
-        return [{"name": "source_recall", "value": None, "comment": "no expected_output"}]
+        return []
 
     expected = expected_output.get("sources", []) if isinstance(expected_output, dict) else []
     if not expected:
@@ -105,7 +105,7 @@ def abstained(*, input: Any, output: Any, expected_output: Any = None, metadata:
     """
     category = (metadata or {}).get("category", "")
     if category != "false_premise":
-        return {"name": "abstained", "value": None, "comment": "n/a — not false_premise"}
+        return None
 
     answer = output.get("answer", "") if isinstance(output, dict) else getattr(output, "answer", "")
     abstained_flag = bool(_ABSTAIN_PHRASES.search(answer))
