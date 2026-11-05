@@ -4,7 +4,10 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 import httpx
-from claude_agent_sdk import AssistantMessage, ClaudeAgentOptions, ResultMessage, TextBlock, ToolUseBlock, query
+from claude_agent_sdk import (
+    AssistantMessage, ClaudeAgentOptions, ResultMessage, TextBlock,
+    ToolResultBlock, ToolUseBlock, UserMessage, query,
+)
 
 from context.config import DATA_DIR, settings
 from observability.prompts.fetch import PromptResult, fetch as fetch_prompt
@@ -27,6 +30,8 @@ class AgentRun:
     as_of: str
     answer: str
     tool_calls: list[dict] = field(default_factory=list)
+    source_paths: list[str] = field(default_factory=list)
+    retrieved_facts: list[dict] = field(default_factory=list)
     num_turns: int = 0
     cost_usd: float | None = None
     duration_ms: int = 0
@@ -80,22 +85,58 @@ def check_helix() -> None:
                          "Start it with: uv run python -m context.mcp") from exc
 
 
+def _extract_text(content: "str | list | None") -> str:
+    if content is None:
+        return ""
+    if isinstance(content, str):
+        return content
+    parts = []
+    for item in content:
+        if isinstance(item, dict) and item.get("type") == "text":
+            parts.append(item["text"])
+        elif isinstance(item, str):
+            parts.append(item)
+    return "\n".join(parts)
+
+
 async def _run_query(question: str, as_of: str, model: str | None, system_prompt: str) -> tuple[AgentRun, "ResultMessage | None"]:
     texts, calls, result = [], [], None
+    # tool_use_id -> tool name, for matching results back to calls
+    _pending: dict[str, str] = {}
+    facts: list[dict] = []
+    source_paths: list[str] = []
+
     async for message in query(prompt=user_prompt(question, as_of), options=build_options(model, system_prompt)):
         if isinstance(message, AssistantMessage):
             for block in message.content:
                 if isinstance(block, TextBlock):
                     texts.append(block.text)
                 elif isinstance(block, ToolUseBlock):
-                    calls.append({"tool": block.name.removeprefix("mcp__helix__"), "input": block.input})
+                    tool = block.name.removeprefix("mcp__helix__")
+                    calls.append({"tool": tool, "input": block.input})
+                    _pending[block.id] = tool
+                    if tool == "read_source":
+                        path = block.input.get("path", "")
+                        if path and path not in source_paths:
+                            source_paths.append(path)
+        elif isinstance(message, UserMessage):
+            if isinstance(message.content, list):
+                for block in message.content:
+                    if isinstance(block, ToolResultBlock) and not block.is_error:
+                        tool = _pending.get(block.tool_use_id, "unknown")
+                        text = _extract_text(block.content)
+                        if text:
+                            facts.append({"tool": tool, "text": text[:500]})
         elif isinstance(message, ResultMessage):
             result = message
+
     run = AgentRun(
         question=question,
         as_of=as_of,
         answer=(result.result if result and result.result else "\n".join(texts)).strip(),
         tool_calls=calls,
+        source_paths=source_paths,
+        retrieved_facts=facts,
         num_turns=result.num_turns if result else 0,
         cost_usd=result.total_cost_usd if result else None,
         duration_ms=result.duration_ms if result else 0,
