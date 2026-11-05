@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" font-family="Inter,Segoe UI,system-ui,sans-serif">
+  <rect width="1200" height="780" fill="#0f0f0f"/>
+
+  <!-- Title -->
+  <text x="600" y="36" fill="#f3f4f6" font-size="17" font-weight="700" text-anchor="middle">Resultado do Experimento — prod-baseline-full</text>
+  <text x="600" y="56" fill="#6b7280" font-size="12" text-anchor="middle">22 perguntas · prompt label: production · dataset: orbisa-truth</text>
+
+  <!-- ══ LEFT: RUN OVERVIEW ══ -->
+
+  <!-- Big score card -->
+  <rect x="20" y="72" width="300" height="160" rx="10" fill="#052e16" stroke="#10b981" stroke-width="2"/>
+  <text x="170" y="108" fill="#6ee7b7" font-size="13" font-weight="700" text-anchor="middle">ACURÁCIA GERAL</text>
+  <text x="170" y="178" fill="#34d399" font-size="64" font-weight="900" text-anchor="middle">100%</text>
+  <text x="170" y="218" fill="#6b7280" font-size="11" text-anchor="middle">22 / 22 questões corretas</text>
+
+  <!-- Source recall card -->
+  <rect x="20" y="244" width="143" height="90" rx="8" fill="#0c1a2e" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="91" y="268" fill="#6b7280" font-size="10" text-anchor="middle">SOURCE RECALL</text>
+  <text x="91" y="306" fill="#93c5fd" font-size="34" font-weight="800" text-anchor="middle">87%</text>
+  <text x="91" y="325" fill="#374151" font-size="9" text-anchor="middle">↓ 13% = fontes sem Helix</text>
+
+  <!-- Cost card -->
+  <rect x="177" y="244" width="143" height="90" rx="8" fill="#1c1700" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="248" y="268" fill="#6b7280" font-size="10" text-anchor="middle">CUSTO / PERGUNTA</text>
+  <text x="248" y="306" fill="#fcd34d" font-size="34" font-weight="800" text-anchor="middle">$0.10</text>
+  <text x="248" y="325" fill="#374151" font-size="9" text-anchor="middle">total: ~$2.15 (22 perguntas)</text>
+
+  <!-- Latency card -->
+  <rect x="20" y="346" width="143" height="90" rx="8" fill="#1a0533" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="91" y="370" fill="#6b7280" font-size="10" text-anchor="middle">LATÊNCIA p95</text>
+  <text x="91" y="408" fill="#d8b4fe" font-size="34" font-weight="800" text-anchor="middle">87s</text>
+  <text x="91" y="427" fill="#374151" font-size="9" text-anchor="middle">por pergunta</text>
+
+  <!-- Questions card -->
+  <rect x="177" y="346" width="143" height="90" rx="8" fill="#171717" stroke="#374151" stroke-width="1.5"/>
+  <text x="248" y="370" fill="#6b7280" font-size="10" text-anchor="middle">PERGUNTAS</text>
+  <text x="248" y="408" fill="#f3f4f6" font-size="34" font-weight="800" text-anchor="middle">22</text>
+  <text x="248" y="427" fill="#374151" font-size="9" text-anchor="middle">7 categorias · concorrência 2</text>
+
+  <!-- ══ MIDDLE: BY CATEGORY ══ -->
+  <text x="345" y="90" fill="#9ca3af" font-size="11" font-weight="600">ACURÁCIA POR CATEGORIA</text>
+
+  <!-- category bars -->
+  <!-- anchor -->
+  <rect x="345" y="100" width="310" height="44" rx="4" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="361" y="118" fill="#d1d5db" font-size="11">anchor</text>
+  <text x="361" y="134" fill="#6b7280" font-size="9">Q01 — Orion refund eligibility date trap</text>
+  <rect x="490" y="108" width="150" height="12" rx="6" fill="#052e16"/>
+  <rect x="490" y="108" width="150" height="12" rx="6" fill="#10b981"/>
+  <text x="648" y="119" fill="#6ee7b7" font-size="11" font-weight="700">100%</text>
+
+  <!-- temporal -->
+  <rect x="345" y="148" width="310" height="44" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="361" y="166" fill="#d1d5db" font-size="11">temporal</text>
+  <text x="361" y="182" fill="#6b7280" font-size="9">Q02, Q03, Q07, Q09, Q21 — policy versioning</text>
+  <rect x="490" y="156" width="150" height="12" rx="6" fill="#052e16"/>
+  <rect x="490" y="156" width="150" height="12" rx="6" fill="#10b981"/>
+  <text x="648" y="167" fill="#6ee7b7" font-size="11" font-weight="700">100%</text>
+
+  <!-- conflict -->
+  <rect x="345" y="196" width="310" height="44" rx="4" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="361" y="214" fill="#d1d5db" font-size="11">conflict</text>
+  <text x="361" y="230" fill="#6b7280" font-size="9">Q04, Q08, Q12 — contradicting sources</text>
+  <rect x="490" y="204" width="150" height="12" rx="6" fill="#052e16"/>
+  <rect x="490" y="204" width="150" height="12" rx="6" fill="#10b981"/>
+  <text x="648" y="215" fill="#6ee7b7" font-size="11" font-weight="700">100%</text>
+
+  <!-- multi_source -->
+  <rect x="345" y="244" width="310" height="44" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="361" y="262" fill="#d1d5db" font-size="11">multi_source</text>
+  <text x="361" y="278" fill="#6b7280" font-size="9">Q05, Q10, Q11, Q18, Q20 — cross-document</text>
+  <rect x="490" y="252" width="150" height="12" rx="6" fill="#052e16"/>
+  <rect x="490" y="252" width="150" height="12" rx="6" fill="#10b981"/>
+  <text x="648" y="263" fill="#6ee7b7" font-size="11" font-weight="700">100%</text>
+
+  <!-- alias -->
+  <rect x="345" y="292" width="310" height="44" rx="4" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="361" y="310" fill="#d1d5db" font-size="11">alias</text>
+  <text x="361" y="326" fill="#6b7280" font-size="9">Q06 — nickname / account owner lookup</text>
+  <rect x="490" y="300" width="150" height="12" rx="6" fill="#052e16"/>
+  <rect x="490" y="300" width="150" height="12" rx="6" fill="#10b981"/>
+  <text x="648" y="311" fill="#6ee7b7" font-size="11" font-weight="700">100%</text>
+
+  <!-- false_premise -->
+  <rect x="345" y="340" width="310" height="44" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="361" y="358" fill="#d1d5db" font-size="11">false_premise</text>
+  <text x="361" y="374" fill="#6b7280" font-size="9">Q13, Q14, Q15 — agent must refuse/flag</text>
+  <rect x="490" y="348" width="150" height="12" rx="6" fill="#052e16"/>
+  <rect x="490" y="348" width="150" height="12" rx="6" fill="#10b981"/>
+  <text x="648" y="359" fill="#6ee7b7" font-size="11" font-weight="700">100%</text>
+
+  <!-- lookup -->
+  <rect x="345" y="388" width="310" height="44" rx="4" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="361" y="406" fill="#d1d5db" font-size="11">lookup</text>
+  <text x="361" y="422" fill="#6b7280" font-size="9">Q16, Q17, Q19, Q22 — factual retrieval</text>
+  <rect x="490" y="396" width="150" height="12" rx="6" fill="#052e16"/>
+  <rect x="490" y="396" width="150" height="12" rx="6" fill="#10b981"/>
+  <text x="648" y="407" fill="#6ee7b7" font-size="11" font-weight="700">100%</text>
+
+  <!-- ══ RIGHT: ANNOTATIONS ══ -->
+
+  <!-- Ann 1: o que significa 100% -->
+  <rect x="720" y="72" width="460" height="130" rx="8" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>
+  <text x="736" y="94" fill="#6ee7b7" font-size="12" font-weight="700">✓  O que significa 100% de acurácia?</text>
+  <text x="736" y="114" fill="#d1d5db" font-size="11">O juiz LLM (claude-sonnet) avaliou todas as 22</text>
+  <text x="736" y="130" fill="#d1d5db" font-size="11">respostas e concluiu que cada uma continha os</text>
+  <text x="736" y="146" fill="#d1d5db" font-size="11">fatos corretos para a data as-of, sem cair na</text>
+  <text x="736" y="162" fill="#d1d5db" font-size="11">armadilha da pergunta.</text>
+  <text x="736" y="192" fill="#6b7280" font-size="10">→ Esta é a baseline. Mude o prompt e compare.</text>
+
+  <!-- Ann 2: source recall gap -->
+  <rect x="720" y="214" width="460" height="110" rx="8" fill="#1c0a00" stroke="#f97316" stroke-width="1.5"/>
+  <text x="736" y="234" fill="#fb923c" font-size="12" font-weight="700">⚠  Por que source_recall é 87% e não 100%?</text>
+  <text x="736" y="254" fill="#d1d5db" font-size="11">5 questões citam fontes que não existem no Helix</text>
+  <text x="736" y="270" fill="#d1d5db" font-size="11">(zendesk, gong, hubspot). O agente nunca as lê,</text>
+  <text x="736" y="286" fill="#d1d5db" font-size="11">então não pode citá-las. É um gap do sistema,</text>
+  <text x="736" y="302" fill="#d1d5db" font-size="11">não erro do agente.</text>
+  <text x="736" y="316" fill="#6b7280" font-size="10">Q01, Q06, Q14, Q18, Q22 → teto máximo: ~83%</text>
+
+  <!-- Ann 3: o que fazer com esses dados -->
+  <rect x="720" y="336" width="460" height="130" rx="8" fill="#0c1a2e" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="736" y="356" fill="#93c5fd" font-size="12" font-weight="700">🔄  O que fazer agora com esses dados?</text>
+  <text x="736" y="376" fill="#d1d5db" font-size="11">1. Criar uma versão staging do prompt no Langfuse</text>
+  <text x="736" y="392" fill="#d1d5db" font-size="11">   com uma instrução diferente (ex: mais conciso)</text>
+  <text x="736" y="412" fill="#d1d5db" font-size="11">2. Rodar o experimento com --prompt-label staging</text>
+  <text x="736" y="428" fill="#d1d5db" font-size="11">3. Comparar os dois Runs lado a lado no Langfuse</text>
+  <text x="736" y="448" fill="#d1d5db" font-size="11">4. Se staging ≥ production, promover para production</text>
+  <text x="736" y="460" fill="#6b7280" font-size="10">→ Datasets → orbisa-truth → aba Runs</text>
+
+  <!-- ══ BOTTOM: source recall breakdown ══ -->
+  <rect x="20" y="460" width="1160" height="140" rx="10" fill="#171717" stroke="#374151" stroke-width="1.5"/>
+  <text x="600" y="482" fill="#f3f4f6" font-size="12" font-weight="700" text-anchor="middle">Source Recall — detalhamento do gap de 13%</text>
+  <line x1="40" y1="490" x2="1160" y2="490" stroke="#2a2a2a" stroke-width="1"/>
+
+  <!-- OK questions group -->
+  <text x="56" y="512" fill="#6b7280" font-size="10" font-weight="600">FONTES ENCONTRADAS (17 questões)</text>
+  <rect x="56" y="518" width="560" height="28" rx="4" fill="#052e16"/>
+  <rect x="56" y="518" width="560" height="28" rx="4" fill="#10b981" fill-opacity="0.15"/>
+  <text x="336" y="537" fill="#6ee7b7" font-size="11" text-anchor="middle">Q02 Q03 Q04 Q05 Q07 Q08 Q09 Q10 Q11 Q12 Q13 Q15 Q16 Q17 Q19 Q20 Q21</text>
+
+  <!-- GAP questions group -->
+  <text x="56" y="568" fill="#6b7280" font-size="10" font-weight="600">FONTES SEM COBERTURA NO HELIX (5 questões)</text>
+  <rect x="56" y="574" width="204" height="28" rx="4" fill="#1c0a00"/>
+  <rect x="56" y="574" width="204" height="28" rx="4" fill="#f97316" fill-opacity="0.15"/>
+  <text x="158" y="593" fill="#fb923c" font-size="11" text-anchor="middle">Q01 Q06 Q14 Q18 Q22</text>
+  <text x="274" y="582" fill="#6b7280" font-size="10">fonte faltando:</text>
+  <text x="274" y="596" fill="#6b7280" font-size="9">zendesk/tickets.json · gong/calls.json · hubspot/deals.csv · hubspot/contacts.csv</text>
+
+  <!-- Right side: total bar -->
+  <text x="680" y="512" fill="#6b7280" font-size="10" font-weight="600">RECALL MÉDIO</text>
+  <rect x="680" y="520" width="460" height="16" rx="8" fill="#1a1a1a"/>
+  <rect x="680" y="520" width="400" height="16" rx="8" fill="#3b82f6"/>
+  <text x="1148" y="533" fill="#93c5fd" font-size="11" font-weight="700">87.1%</text>
+  <text x="680" y="556" fill="#6b7280" font-size="10" font-weight="600">TETO MÁXIMO ALCANÇÁVEL (sem ingerir novas fontes)</text>
+  <rect x="680" y="564" width="460" height="16" rx="8" fill="#1a1a1a"/>
+  <rect x="680" y="564" width="383" height="16" rx="8" fill="#f97316" fill-opacity="0.6"/>
+  <text x="1148" y="577" fill="#fb923c" font-size="11" font-weight="700">~83%</text>
+
+  <!-- ══ BOTTOM FOOTER ══ -->
+  <rect x="20" y="614" width="1160" height="70" rx="8" fill="#0c1a2e" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="600" y="636" fill="#93c5fd" font-size="11" font-weight="700" text-anchor="middle">Como interpretar esse resultado para o próximo passo</text>
+  <text x="600" y="656" fill="#d1d5db" font-size="11" text-anchor="middle">100% de acurácia é o teto atual do agente com o prompt production. Para melhorar source_recall, ingira as fontes faltantes no Helix.</text>
+  <text x="600" y="674" fill="#6b7280" font-size="10" text-anchor="middle">Para melhorar acurácia em prompts futuros: compare sempre contra este Run como referência no Langfuse.</text>
+</svg>
