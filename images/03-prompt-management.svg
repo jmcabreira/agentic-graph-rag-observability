@@ -1,123 +1,138 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="700" font-family="Inter,Segoe UI,system-ui,sans-serif">
-  <rect width="1100" height="700" fill="#0f0f0f"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="740" font-family="Inter,Segoe UI,system-ui,sans-serif">
+  <rect width="1200" height="740" fill="#0f0f0f"/>
+
+  <text x="600" y="36" fill="#f3f4f6" font-size="17" font-weight="700" text-anchor="middle">Langfuse — Gerenciamento de Prompts</text>
+  <text x="600" y="56" fill="#6b7280" font-size="12" text-anchor="middle">As instruções do agente ficam aqui com histórico de versões — como um Git para textos de instrução</text>
 
   <!-- Sidebar -->
-  <rect x="0" y="0" width="200" height="700" fill="#171717"/>
-  <text x="20" y="36" fill="#888" font-size="11" font-weight="600" letter-spacing="1">LANGFUSE</text>
-  <text x="20" y="72" fill="#6b7280" font-size="13">🔍 Tracing</text>
-  <text x="20" y="100" fill="#6b7280" font-size="13">📊 Scores</text>
-  <rect x="8" y="112" width="184" height="30" rx="6" fill="#1f2937"/>
-  <text x="20" y="132" fill="#f3f4f6" font-size="13" font-weight="500">📝 Prompt Mgmt</text>
-  <text x="20" y="162" fill="#6b7280" font-size="13">📈 Metrics</text>
-
-  <!-- Main area -->
-  <text x="220" y="36" fill="#f3f4f6" font-size="20" font-weight="700">Prompt Management</text>
+  <rect x="0" y="70" width="180" height="670" fill="#171717"/>
+  <text x="16" y="102" fill="#888" font-size="11" font-weight="600">LANGFUSE</text>
+  <text x="16" y="130" fill="#6b7280" font-size="12">🔍 Tracing</text>
+  <rect x="8" y="140" width="164" height="28" rx="6" fill="#1f2937"/>
+  <text x="16" y="158" fill="#f3f4f6" font-size="12">📝 Prompts</text>
+  <text x="16" y="184" fill="#6b7280" font-size="12">📊 Scores</text>
 
   <!-- Prompt list -->
-  <!-- ask-orbisa-system -->
-  <rect x="220" y="52" width="560" height="70" rx="6" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
-  <rect x="220" y="52" width="4" height="70" rx="2" fill="#3b82f6"/>
-  <text x="234" y="74" fill="#f3f4f6" font-size="13" font-weight="700">ask-orbisa-system</text>
-  <text x="234" y="90" fill="#6b7280" font-size="11">text prompt  |  2 versions  |  updated 2026-11-05</text>
-  <rect x="234" y="100" width="68" height="18" rx="9" fill="#1e3a5f"/>
-  <text x="241" y="113" fill="#93c5fd" font-size="10" font-weight="600">production</text>
-  <rect x="310" y="100" width="52" height="18" rx="9" fill="#451a03"/>
-  <text x="317" y="113" fill="#fed7aa" font-size="10" font-weight="600">staging</text>
-  <text x="700" y="88" fill="#6b7280" font-size="11">v1 / v2</text>
+  <text x="196" y="94" fill="#9ca3af" font-size="11" font-weight="600">INSTRUÇÕES CADASTRADAS</text>
 
-  <!-- helix-tool-search_context -->
-  <rect x="220" y="130" width="560" height="52" rx="6" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
-  <rect x="220" y="130" width="4" height="52" rx="2" fill="#10b981"/>
-  <text x="234" y="150" fill="#d1d5db" font-size="12" font-weight="600">helix-tool-search_context</text>
-  <text x="234" y="166" fill="#6b7280" font-size="11">text prompt  |  2 versions  |  updated 2026-11-05</text>
-  <rect x="234" y="174" width="68" height="16" rx="8" fill="#1e3a5f"/>
-  <text x="241" y="185" fill="#93c5fd" font-size="10">production</text>
-  <rect x="310" y="174" width="52" height="16" rx="8" fill="#451a03"/>
-  <text x="317" y="185" fill="#fed7aa" font-size="10">staging</text>
+  <!-- ask-orbisa-system — highlighted -->
+  <rect x="196" y="102" width="490" height="68" rx="6" fill="#171717" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="196" y="102" width="4" height="68" rx="2" fill="#3b82f6"/>
+  <text x="210" y="124" fill="#f3f4f6" font-size="13" font-weight="700">ask-orbisa-system</text>
+  <text x="210" y="140" fill="#6b7280" font-size="11">Instruções gerais do agente — como ele deve se comportar</text>
+  <rect x="210" y="150" width="68" height="16" rx="8" fill="#1e3a5f"/>
+  <text x="218" y="162" fill="#93c5fd" font-size="10" font-weight="600">production</text>
+  <rect x="284" y="150" width="52" height="16" rx="8" fill="#451a03"/>
+  <text x="292" y="162" fill="#fed7aa" font-size="10" font-weight="600">staging</text>
+  <text x="460" y="140" fill="#6b7280" font-size="11">2 versões</text>
 
-  <!-- helix-tool-find_entities -->
-  <rect x="220" y="190" width="560" height="52" rx="6" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
-  <rect x="220" y="190" width="4" height="52" rx="2" fill="#10b981"/>
-  <text x="234" y="210" fill="#d1d5db" font-size="12">helix-tool-find_entities</text>
-  <text x="234" y="226" fill="#6b7280" font-size="11">text prompt  |  2 versions</text>
-  <rect x="234" y="234" width="68" height="16" rx="8" fill="#1e3a5f"/>
-  <text x="241" y="245" fill="#93c5fd" font-size="10">production</text>
+  <!-- tool descriptions -->
+  <rect x="196" y="178" width="490" height="52" rx="6" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="196" y="178" width="4" height="52" rx="2" fill="#10b981"/>
+  <text x="210" y="198" fill="#d1d5db" font-size="12" font-weight="600">helix-tool-search_context</text>
+  <text x="210" y="214" fill="#6b7280" font-size="11">Descrição da ferramenta de busca de fatos</text>
+  <rect x="210" y="220" width="68" height="14" rx="7" fill="#1e3a5f"/>
+  <text x="218" y="230" fill="#93c5fd" font-size="9">production</text>
 
-  <!-- helix-tool-read_source -->
-  <rect x="220" y="250" width="560" height="52" rx="6" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
-  <rect x="220" y="250" width="4" height="52" rx="2" fill="#10b981"/>
-  <text x="234" y="270" fill="#d1d5db" font-size="12">helix-tool-read_source</text>
-  <text x="234" y="286" fill="#6b7280" font-size="11">text prompt  |  2 versions</text>
-  <rect x="234" y="294" width="68" height="16" rx="8" fill="#1e3a5f"/>
-  <text x="241" y="305" fill="#93c5fd" font-size="10">production</text>
+  <rect x="196" y="238" width="490" height="52" rx="6" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="196" y="238" width="4" height="52" rx="2" fill="#10b981"/>
+  <text x="210" y="258" fill="#d1d5db" font-size="12">helix-tool-find_entities</text>
+  <text x="210" y="274" fill="#6b7280" font-size="11">Descrição da ferramenta de busca de entidades</text>
+  <rect x="210" y="280" width="68" height="14" rx="7" fill="#1e3a5f"/>
+  <text x="218" y="290" fill="#93c5fd" font-size="9">production</text>
 
-  <!-- helix-tool-list_sources -->
-  <rect x="220" y="310" width="560" height="52" rx="6" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
-  <rect x="220" y="310" width="4" height="52" rx="2" fill="#10b981"/>
-  <text x="234" y="330" fill="#d1d5db" font-size="12">helix-tool-list_sources</text>
-  <text x="234" y="346" fill="#6b7280" font-size="11">text prompt  |  2 versions</text>
-  <rect x="234" y="354" width="68" height="16" rx="8" fill="#1e3a5f"/>
-  <text x="241" y="365" fill="#93c5fd" font-size="10">production</text>
+  <rect x="196" y="298" width="490" height="52" rx="6" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="196" y="298" width="4" height="52" rx="2" fill="#10b981"/>
+  <text x="210" y="318" fill="#d1d5db" font-size="12">helix-tool-read_source</text>
+  <text x="210" y="334" fill="#6b7280" font-size="11">Descrição da ferramenta de leitura de documentos</text>
+  <rect x="210" y="340" width="68" height="14" rx="7" fill="#1e3a5f"/>
+  <text x="218" y="350" fill="#93c5fd" font-size="9">production</text>
 
-  <!-- DETAIL PANEL: ask-orbisa-system versions -->
-  <rect x="220" y="376" width="560" height="250" rx="6" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
-  <text x="234" y="396" fill="#f3f4f6" font-size="13" font-weight="700">ask-orbisa-system — Versions</text>
-  <line x1="234" y1="402" x2="770" y2="402" stroke="#2a2a2a" stroke-width="1"/>
+  <!-- Version comparison -->
+  <text x="196" y="376" fill="#9ca3af" font-size="11" font-weight="600">COMPARAÇÃO DE VERSÕES — ask-orbisa-system</text>
 
-  <!-- v2 staging -->
-  <rect x="234" y="410" width="530" height="88" rx="4" fill="#1a1a1a" stroke="#451a03" stroke-width="1"/>
-  <text x="246" y="428" fill="#fed7aa" font-size="11" font-weight="700">v2 — staging</text>
-  <text x="246" y="444" fill="#6b7280" font-size="10">2026-11-05 11:00  |  pushed via: push.py --label staging</text>
-  <line x1="246" y1="450" x2="754" y2="450" stroke="#2a2a2a" stroke-width="1"/>
-  <text x="246" y="464" fill="#9ca3af" font-size="10">... prefer the one valid on the as-of date, and prefer a signed</text>
-  <text x="246" y="478" fill="#9ca3af" font-size="10">contract over a general policy.</text>
-  <rect x="246" y="484" width="510" height="1" fill="#374151"/>
-  <text x="246" y="496" fill="#fcd34d" font-size="10" font-weight="600">+ When a signed contract and a policy disagree, quote the contract clause number.</text>
+  <!-- v1 -->
+  <rect x="196" y="386" width="238" height="140" rx="6" fill="#1a1a1a" stroke="#1e3a5f" stroke-width="1.5"/>
+  <rect x="196" y="386" width="238" height="28" rx="6" fill="#1e3a5f"/>
+  <text x="210" y="404" fill="#93c5fd" font-size="11" font-weight="700">Versão 1 — production</text>
+  <text x="210" y="424" fill="#9ca3af" font-size="10">Publicada: 5 nov, 10:50</text>
+  <line x1="210" y1="430" x2="424" y2="430" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="210" y="446" fill="#9ca3af" font-size="10">... prefira o fato válido na data as-of,</text>
+  <text x="210" y="462" fill="#9ca3af" font-size="10">e prefira contratos assinados sobre</text>
+  <text x="210" y="478" fill="#9ca3af" font-size="10">políticas gerais. Use find_entities para</text>
+  <text x="210" y="494" fill="#9ca3af" font-size="10">resolver nomes e apelidos.</text>
+  <text x="210" y="516" fill="#6b7280" font-size="9">— sem a regra da cláusula —</text>
 
-  <!-- v1 production -->
-  <rect x="234" y="506" width="530" height="66" rx="4" fill="#1a1a1a" stroke="#1e3a5f" stroke-width="1"/>
-  <text x="246" y="524" fill="#93c5fd" font-size="11" font-weight="700">v1 — production</text>
-  <text x="246" y="540" fill="#6b7280" font-size="10">2026-11-05 10:50  |  pushed via: push.py (default)</text>
-  <line x1="246" y1="546" x2="754" y2="546" stroke="#2a2a2a" stroke-width="1"/>
-  <text x="246" y="560" fill="#9ca3af" font-size="10">... prefer the one valid on the as-of date, and prefer a signed</text>
-  <text x="246" y="574" fill="#9ca3af" font-size="10">contract over a general policy. People appear under different...</text>
+  <!-- v2 -->
+  <rect x="448" y="386" width="238" height="140" rx="6" fill="#1a1a1a" stroke="#451a03" stroke-width="1.5"/>
+  <rect x="448" y="386" width="238" height="28" rx="6" fill="#451a03"/>
+  <text x="462" y="404" fill="#fed7aa" font-size="11" font-weight="700">Versão 2 — staging</text>
+  <text x="462" y="424" fill="#9ca3af" font-size="10">Publicada: 5 nov, 11:00</text>
+  <line x1="462" y1="430" x2="676" y2="430" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="462" y="446" fill="#9ca3af" font-size="10">... prefira o fato válido na data as-of,</text>
+  <text x="462" y="462" fill="#9ca3af" font-size="10">e prefira contratos assinados sobre</text>
+  <text x="462" y="478" fill="#9ca3af" font-size="10">políticas gerais. Use find_entities para</text>
+  <text x="462" y="494" fill="#9ca3af" font-size="10">resolver nomes e apelidos.</text>
+  <rect x="462" y="502" width="210" height="18" rx="3" fill="#422006"/>
+  <text x="468" y="514" fill="#fcd34d" font-size="9" font-weight="600">+ Cite o número da cláusula do contrato</text>
 
-  <!-- ===== ANNOTATIONS ===== -->
+  <!-- diff arrow -->
+  <line x1="435" y1="456" x2="446" y2="456" stroke="#374151" stroke-width="1.5" marker-end="url(#arrowGray)"/>
 
-  <!-- Annotation 1: push.py -->
-  <line x1="784" y1="88" x2="860" y2="88" stroke="#3b82f6" stroke-width="1.5"/>
-  <line x1="860" y1="88" x2="860" y2="140" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <rect x="800" y="104" width="280" height="80" rx="6" fill="#0c1a2e" stroke="#3b82f6" stroke-width="1.5"/>
-  <text x="812" y="122" fill="#93c5fd" font-size="11" font-weight="700">push.py — push command</text>
-  <text x="812" y="138" fill="#d1d5db" font-size="10">uv run python -m observability.prompts.push</text>
-  <text x="812" y="154" fill="#d1d5db" font-size="10">↳ sobe production (v1)</text>
-  <text x="812" y="170" fill="#d1d5db" font-size="10">push --label staging --system-file candidates/</text>
-  <text x="812" y="184" fill="#d1d5db" font-size="10">↳ sobe staging (v2)</text>
+  <!-- ───── RIGHT PANEL ───── -->
 
-  <!-- Annotation 2: tool descriptions -->
-  <line x1="784" y1="250" x2="860" y2="250" stroke="#10b981" stroke-width="1.5"/>
-  <line x1="860" y1="250" x2="860" y2="296" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <rect x="800" y="270" width="280" height="80" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>
-  <text x="812" y="288" fill="#6ee7b7" font-size="11" font-weight="700">server.py — _tool_description()</text>
-  <text x="812" y="304" fill="#d1d5db" font-size="10">push.py extrai os _DESC_* do server.py</text>
-  <text x="812" y="320" fill="#d1d5db" font-size="10">via AST e sobe como prompts separados</text>
-  <text x="812" y="336" fill="#d1d5db" font-size="10">fetch na startup do MCP server</text>
+  <!-- Ann 1: what is prompt management -->
+  <rect x="720" y="96" width="460" height="120" rx="8" fill="#0c1a2e" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="736" y="116" fill="#93c5fd" font-size="12" font-weight="700">📝  O que é Gerenciamento de Prompts?</text>
+  <text x="736" y="134" fill="#d1d5db" font-size="11">As instruções do agente (o "sistema de regras"</text>
+  <text x="736" y="150" fill="#d1d5db" font-size="11">que define como ele responde) ficam salvas aqui</text>
+  <text x="736" y="166" fill="#d1d5db" font-size="11">com histórico. É como o histórico de versões do</text>
+  <text x="736" y="182" fill="#d1d5db" font-size="11">Google Docs, mas para textos de instrução de IA.</text>
+  <text x="736" y="204" fill="#6b7280" font-size="10">→ Muda o comportamento do agente sem precisar de deploy</text>
 
-  <!-- Annotation 3: a linha nova no staging -->
-  <line x1="784" y1="496" x2="860" y2="496" stroke="#fcd34d" stroke-width="1.5"/>
-  <line x1="860" y1="496" x2="860" y2="540" stroke="#fcd34d" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <rect x="800" y="488" width="280" height="80" rx="6" fill="#1c1700" stroke="#fcd34d" stroke-width="1.5"/>
-  <text x="812" y="506" fill="#fcd34d" font-size="11" font-weight="700">Nova regra adicionada em v2</text>
-  <text x="812" y="522" fill="#d1d5db" font-size="10">candidates/ask-orbisa-system-staging.md</text>
-  <text x="812" y="538" fill="#d1d5db" font-size="10">↳ quando contrato e política conflitam,</text>
-  <text x="812" y="554" fill="#d1d5db" font-size="10">   agente cita o número da cláusula</text>
+  <!-- Ann 2: labels -->
+  <rect x="720" y="228" width="460" height="120" rx="8" fill="#171717" stroke="#374151" stroke-width="1.5"/>
+  <text x="736" y="248" fill="#9ca3af" font-size="12" font-weight="700">🏷  O que são os labels production e staging?</text>
+  <rect x="736" y="258" width="68" height="18" rx="9" fill="#1e3a5f"/>
+  <text x="744" y="271" fill="#93c5fd" font-size="10" font-weight="600">production</text>
+  <text x="812" y="271" fill="#d1d5db" font-size="11">— versão que roda com usuários reais</text>
+  <rect x="736" y="282" width="52" height="18" rx="9" fill="#451a03"/>
+  <text x="744" y="295" fill="#fed7aa" font-size="10" font-weight="600">staging</text>
+  <text x="796" y="295" fill="#d1d5db" font-size="11">— versão em teste, não impacta produção</text>
+  <text x="736" y="316" fill="#d1d5db" font-size="11">Você pode rodar a mesma pergunta com os dois</text>
+  <text x="736" y="332" fill="#d1d5db" font-size="11">labels e comparar os traces lado a lado.</text>
 
-  <!-- Annotation 4: promote command -->
-  <rect x="800" y="590" width="280" height="80" rx="6" fill="#171717" stroke="#374151" stroke-width="1.5"/>
-  <text x="812" y="608" fill="#9ca3af" font-size="11" font-weight="700">push.py — promote command</text>
-  <text x="812" y="624" fill="#d1d5db" font-size="10">push promote --version 2</text>
-  <text x="812" y="640" fill="#d1d5db" font-size="10">↳ move label "production" para v2</text>
-  <text x="812" y="656" fill="#d1d5db" font-size="10">↳ grava v2 em system_prompt.md</text>
-  <text x="812" y="672" fill="#6b7280" font-size="10">   (fallback em sincronia)</text>
+  <!-- Ann 3: tool descriptions -->
+  <rect x="720" y="360" width="460" height="120" rx="8" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>
+  <text x="736" y="380" fill="#6ee7b7" font-size="12" font-weight="700">🔧  Por que as ferramentas também têm prompts?</text>
+  <text x="736" y="398" fill="#d1d5db" font-size="11">O agente lê a descrição de cada ferramenta para</text>
+  <text x="736" y="414" fill="#d1d5db" font-size="11">decidir qual usar. Se a descrição for vaga, ele pode</text>
+  <text x="736" y="430" fill="#d1d5db" font-size="11">escolher a errada. Versionar essas descrições permite</text>
+  <text x="736" y="446" fill="#d1d5db" font-size="11">testar melhorias sem alterar o código.</text>
+  <text x="736" y="466" fill="#6b7280" font-size="10">→ Exemplo: adicionar "use esta tool quando houver datas" muda o comportamento</text>
+
+  <!-- Ann 4: promote -->
+  <rect x="720" y="492" width="460" height="120" rx="8" fill="#1a0533" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="736" y="512" fill="#d8b4fe" font-size="12" font-weight="700">⬆  O que é "promover" uma versão?</text>
+  <text x="736" y="530" fill="#d1d5db" font-size="11">Quando o staging é aprovado, você "promove":</text>
+  <text x="736" y="546" fill="#d1d5db" font-size="11">a label production se move para a nova versão.</text>
+  <text x="736" y="562" fill="#d1d5db" font-size="11">O arquivo local também é atualizado automaticamente</text>
+  <text x="736" y="578" fill="#d1d5db" font-size="11">para garantir que, se o Langfuse cair, o agente ainda</text>
+  <text x="736" y="594" fill="#d1d5db" font-size="11">use a versão mais recente aprovada (fallback).</text>
+
+  <!-- Bottom: the new rule highlight -->
+  <rect x="196" y="544" width="490" height="82" rx="8" fill="#171717" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="212" y="564" fill="#fcd34d" font-size="12" font-weight="700">✏  Exemplo real: nova regra adicionada em staging</text>
+  <text x="212" y="582" fill="#d1d5db" font-size="11">Regra adicionada:</text>
+  <rect x="212" y="590" width="460" height="22" rx="4" fill="#422006"/>
+  <text x="220" y="604" fill="#fcd34d" font-size="11">"Quando um contrato e uma política conflitarem, cite o número da cláusula."</text>
+  <text x="212" y="620" fill="#6b7280" font-size="10">Com isso, o agente passa a dar respostas mais precisas em casos de conflito — verificável comparando os dois traces.</text>
+
+  <!-- Legend / arrow markers -->
+  <defs>
+    <marker id="arrowGray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#374151"/>
+    </marker>
+  </defs>
 
 </svg>

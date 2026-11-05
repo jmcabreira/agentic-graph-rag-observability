@@ -1,143 +1,162 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="680" font-family="Inter,Segoe UI,system-ui,sans-serif">
-  <rect width="1100" height="680" fill="#0a0a0a"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="740" font-family="Inter,Segoe UI,system-ui,sans-serif">
+  <rect width="1200" height="740" fill="#0a0a0a"/>
 
-  <text x="550" y="38" fill="#f3f4f6" font-size="20" font-weight="700" text-anchor="middle">Arquitetura de Observabilidade — Helix + Langfuse</text>
-  <text x="550" y="58" fill="#6b7280" font-size="12" text-anchor="middle">Como os incrementos 1–4 se conectam</text>
+  <text x="600" y="36" fill="#f3f4f6" font-size="17" font-weight="700" text-anchor="middle">Como tudo se conecta — Visão Geral</text>
+  <text x="600" y="56" fill="#6b7280" font-size="12" text-anchor="middle">Do momento em que o usuário faz uma pergunta até aparecer no painel do Langfuse</text>
 
-  <!-- ══════ ROW 1: Entry points ══════ -->
+  <!-- ══════ STEP 1 ══════ -->
+  <rect x="40" y="90" width="200" height="110" rx="10" fill="#171717" stroke="#3b82f6" stroke-width="2"/>
+  <text x="140" y="116" fill="#93c5fd" font-size="22" text-anchor="middle">👤</text>
+  <text x="140" y="138" fill="#f3f4f6" font-size="13" font-weight="700" text-anchor="middle">Usuário pergunta</text>
+  <text x="140" y="156" fill="#9ca3af" font-size="10" text-anchor="middle">"Quem aprova reembolso</text>
+  <text x="140" y="170" fill="#9ca3af" font-size="10" text-anchor="middle">para a Orion Freight?"</text>
+  <text x="140" y="188" fill="#6b7280" font-size="9" text-anchor="middle">via terminal ou integração</text>
 
-  <!-- CLI box -->
-  <rect x="60" y="90" width="180" height="80" rx="8" fill="#171717" stroke="#3b82f6" stroke-width="2"/>
-  <text x="150" y="118" fill="#93c5fd" font-size="13" font-weight="700" text-anchor="middle">CLI</text>
-  <text x="150" y="134" fill="#9ca3af" font-size="10" text-anchor="middle">__main__.py</text>
-  <text x="150" y="148" fill="#6b7280" font-size="9" text-anchor="middle">--id --session --user</text>
-  <text x="150" y="162" fill="#6b7280" font-size="9" text-anchor="middle">--prompt-label</text>
+  <!-- STEP 1 → 2 arrow -->
+  <line x1="242" y1="145" x2="318" y2="145" stroke="#3b82f6" stroke-width="2" marker-end="url(#ab)"/>
 
-  <!-- runner.py box -->
-  <rect x="300" y="90" width="200" height="80" rx="8" fill="#171717" stroke="#3b82f6" stroke-width="2"/>
-  <text x="400" y="118" fill="#93c5fd" font-size="13" font-weight="700" text-anchor="middle">runner.py</text>
-  <text x="400" y="134" fill="#9ca3af" font-size="10" text-anchor="middle">ask()</text>
-  <text x="400" y="148" fill="#6b7280" font-size="9" text-anchor="middle">1. fetch_prompt() → system_prompt</text>
-  <text x="400" y="162" fill="#6b7280" font-size="9" text-anchor="middle">2. start_as_current_observation()</text>
+  <!-- ══════ STEP 2 ══════ -->
+  <rect x="320" y="90" width="200" height="110" rx="10" fill="#171717" stroke="#3b82f6" stroke-width="2"/>
+  <text x="420" y="116" fill="#93c5fd" font-size="22" text-anchor="middle">🤖</text>
+  <text x="420" y="138" fill="#f3f4f6" font-size="13" font-weight="700" text-anchor="middle">Agente recebe</text>
+  <text x="420" y="156" fill="#9ca3af" font-size="10" text-anchor="middle">Busca as instruções mais</text>
+  <text x="420" y="170" fill="#9ca3af" font-size="10" text-anchor="middle">recentes no Langfuse</text>
+  <text x="420" y="188" fill="#6b7280" font-size="9" text-anchor="middle">fallback: arquivo local</text>
 
-  <!-- Claude Code CLI box -->
-  <rect x="560" y="90" width="200" height="80" rx="8" fill="#171717" stroke="#6366f1" stroke-width="2"/>
-  <text x="660" y="112" fill="#a5b4fc" font-size="13" font-weight="700" text-anchor="middle">Claude Code CLI</text>
-  <text x="660" y="128" fill="#9ca3af" font-size="10" text-anchor="middle">claude_agent_sdk.query()</text>
-  <text x="660" y="144" fill="#6b7280" font-size="9" text-anchor="middle">OTLP export automático</text>
-  <text x="660" y="158" fill="#6b7280" font-size="9" text-anchor="middle">claude_code.interaction / llm_request</text>
+  <!-- STEP 2 → 3 arrow -->
+  <line x1="522" y1="145" x2="598" y2="145" stroke="#6366f1" stroke-width="2" marker-end="url(#ai)"/>
 
-  <!-- Helix MCP box -->
-  <rect x="820" y="90" width="200" height="80" rx="8" fill="#171717" stroke="#10b981" stroke-width="2"/>
-  <text x="920" y="112" fill="#6ee7b7" font-size="13" font-weight="700" text-anchor="middle">Helix MCP Server</text>
-  <text x="920" y="128" fill="#9ca3af" font-size="10" text-anchor="middle">server.py</text>
-  <text x="920" y="144" fill="#6b7280" font-size="9" text-anchor="middle">4 tools com ctx: Context</text>
-  <text x="920" y="158" fill="#6b7280" font-size="9" text-anchor="middle">neo4j-retrieval / read-source</text>
+  <!-- ══════ STEP 3 ══════ -->
+  <rect x="600" y="90" width="200" height="110" rx="10" fill="#171717" stroke="#6366f1" stroke-width="2"/>
+  <text x="700" y="116" fill="#a5b4fc" font-size="22" text-anchor="middle">🧠</text>
+  <text x="700" y="138" fill="#f3f4f6" font-size="13" font-weight="700" text-anchor="middle">Modelo pensa</text>
+  <text x="700" y="156" fill="#9ca3af" font-size="10" text-anchor="middle">Claude Sonnet analisa</text>
+  <text x="700" y="170" fill="#9ca3af" font-size="10" text-anchor="middle">e decide quais ferramentas</text>
+  <text x="700" y="188" fill="#6b7280" font-size="9" text-anchor="middle">chamar para responder</text>
 
-  <!-- Arrows row 1 -->
-  <line x1="240" y1="130" x2="298" y2="130" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowBlue)"/>
-  <line x1="500" y1="130" x2="558" y2="130" stroke="#6366f1" stroke-width="2" marker-end="url(#arrowIndigo)"/>
-  <line x1="760" y1="130" x2="818" y2="130" stroke="#10b981" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrowGreen)"/>
-  <text x="530" y="122" fill="#6b7280" font-size="9" text-anchor="middle">MCP HTTP</text>
-  <text x="775" y="122" fill="#6b7280" font-size="9" text-anchor="middle">calls tools</text>
+  <!-- STEP 3 → 4 arrow -->
+  <line x1="802" y1="145" x2="878" y2="145" stroke="#10b981" stroke-width="2" marker-end="url(#ag)"/>
 
-  <!-- ══════ ROW 2: observability infra ══════ -->
+  <!-- ══════ STEP 4 ══════ -->
+  <rect x="880" y="90" width="200" height="110" rx="10" fill="#171717" stroke="#10b981" stroke-width="2"/>
+  <text x="980" y="116" fill="#6ee7b7" font-size="22" text-anchor="middle">🔍</text>
+  <text x="980" y="138" fill="#f3f4f6" font-size="13" font-weight="700" text-anchor="middle">Helix busca</text>
+  <text x="980" y="156" fill="#9ca3af" font-size="10" text-anchor="middle">Consulta o grafo Neo4j</text>
+  <text x="980" y="170" fill="#9ca3af" font-size="10" text-anchor="middle">e lê documentos reais</text>
+  <text x="980" y="188" fill="#6b7280" font-size="9" text-anchor="middle">contratos, políticas, Slack</text>
 
-  <!-- Langfuse SDK -->
-  <rect x="200" y="250" width="180" height="70" rx="8" fill="#171717" stroke="#f59e0b" stroke-width="2"/>
-  <text x="290" y="274" fill="#fcd34d" font-size="12" font-weight="700" text-anchor="middle">Langfuse SDK v4</text>
-  <text x="290" y="290" fill="#9ca3af" font-size="9" text-anchor="middle">tracing/__init__.py</text>
-  <text x="290" y="304" fill="#6b7280" font-size="9" text-anchor="middle">get_client() · mask=_mask()</text>
-  <text x="290" y="316" fill="#6b7280" font-size="9" text-anchor="middle">environment=workshop</text>
+  <!-- ══════ LANGFUSE CAPTURE LAYER ══════ -->
+  <rect x="40" y="234" width="1120" height="8" rx="4" fill="#f59e0b" opacity="0.3"/>
+  <text x="600" y="257" fill="#fcd34d" font-size="11" font-weight="700" text-anchor="middle">↓  TUDO ABAIXO É CAPTURADO AUTOMATICAMENTE PELO LANGFUSE  ↓</text>
 
-  <!-- OTLP export -->
-  <rect x="440" y="250" width="180" height="70" rx="8" fill="#171717" stroke="#6366f1" stroke-width="2"/>
-  <text x="530" y="274" fill="#a5b4fc" font-size="12" font-weight="700" text-anchor="middle">OTLP Exporter</text>
-  <text x="530" y="290" fill="#9ca3af" font-size="9" text-anchor="middle">otel_env.py</text>
-  <text x="530" y="304" fill="#6b7280" font-size="9" text-anchor="middle">OTEL_EXPORTER_OTLP_TRACES</text>
-  <text x="530" y="316" fill="#6b7280" font-size="9" text-anchor="middle">→ /api/public/otel/v1/traces</text>
+  <!-- ══════ WHAT LANGFUSE CAPTURES ══════ -->
 
-  <!-- Prompt fetch -->
-  <rect x="680" y="250" width="180" height="70" rx="8" fill="#171717" stroke="#3b82f6" stroke-width="2"/>
-  <text x="770" y="274" fill="#93c5fd" font-size="12" font-weight="700" text-anchor="middle">Prompt Fetch</text>
-  <text x="770" y="290" fill="#9ca3af" font-size="9" text-anchor="middle">prompts/fetch.py</text>
-  <text x="770" y="304" fill="#6b7280" font-size="9" text-anchor="middle">lf.get_prompt(name, label)</text>
-  <text x="770" y="316" fill="#6b7280" font-size="9" text-anchor="middle">timeout=5s · fallback local</text>
+  <!-- Capture box 1: conversation trace -->
+  <rect x="40" y="270" width="260" height="130" rx="10" fill="#171717" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="40" y="270" width="260" height="36" rx="10" fill="#1c1700"/>
+  <text x="170" y="293" fill="#fcd34d" font-size="12" font-weight="700" text-anchor="middle">📊  Trace da conversa</text>
+  <text x="56" y="322" fill="#d1d5db" font-size="11">Registra a pergunta e a resposta</text>
+  <text x="56" y="338" fill="#d1d5db" font-size="11">final, com quanto custou e</text>
+  <text x="56" y="354" fill="#d1d5db" font-size="11">quanto tempo demorou no total.</text>
+  <text x="56" y="374" fill="#6b7280" font-size="10">→ Aparece na lista de traces</text>
+  <text x="56" y="388" fill="#6b7280" font-size="10">   com sessão e usuário</text>
 
-  <!-- Arrows to row 2 -->
-  <line x1="400" y1="170" x2="310" y2="248" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowAmber)"/>
-  <line x1="660" y1="170" x2="530" y2="248" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowIndigo)"/>
-  <line x1="400" y1="170" x2="750" y2="248" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowBlue)"/>
-  <line x1="920" y1="170" x2="300" y2="248" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowAmber)"/>
+  <!-- Capture box 2: span tree -->
+  <rect x="320" y="270" width="260" height="130" rx="10" fill="#171717" stroke="#6366f1" stroke-width="2"/>
+  <rect x="320" y="270" width="260" height="36" rx="10" fill="#12123a"/>
+  <text x="450" y="293" fill="#a5b4fc" font-size="12" font-weight="700" text-anchor="middle">🌳  Árvore de etapas</text>
+  <text x="336" y="322" fill="#d1d5db" font-size="11">Cada "passo" do agente vira um</text>
+  <text x="336" y="338" fill="#d1d5db" font-size="11">nó na árvore: busca, leitura,</text>
+  <text x="336" y="354" fill="#d1d5db" font-size="11">pensamento, resposta — tudo</text>
+  <text x="336" y="370" fill="#d1d5db" font-size="11">conectado e com tempo medido.</text>
+  <text x="336" y="388" fill="#6b7280" font-size="10">→ Aparece no detalhe do trace</text>
 
-  <!-- ══════ ROW 3: Langfuse backend ══════ -->
+  <!-- Capture box 3: tokens & cost -->
+  <rect x="600" y="270" width="260" height="130" rx="10" fill="#171717" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="600" y="270" width="260" height="36" rx="10" fill="#1c1700"/>
+  <text x="730" y="293" fill="#fcd34d" font-size="12" font-weight="700" text-anchor="middle">💰  Tokens e custo</text>
+  <text x="616" y="322" fill="#d1d5db" font-size="11">Soma tokens de entrada e saída</text>
+  <text x="616" y="338" fill="#d1d5db" font-size="11">de todas as chamadas ao modelo.</text>
+  <text x="616" y="354" fill="#d1d5db" font-size="11">Calcula o custo em dólares e</text>
+  <text x="616" y="370" fill="#d1d5db" font-size="11">registra por modelo usado.</text>
+  <text x="616" y="388" fill="#6b7280" font-size="10">→ Visível na lista e no detalhe</text>
 
-  <rect x="200" y="390" width="560" height="80" rx="8" fill="#171717" stroke="#374151" stroke-width="1.5"/>
-  <rect x="200" y="390" width="4" height="80" rx="2" fill="#f59e0b"/>
-  <text x="480" y="414" fill="#fcd34d" font-size="14" font-weight="700" text-anchor="middle">Langfuse (self-hosted)</text>
-  <text x="480" y="432" fill="#9ca3af" font-size="10" text-anchor="middle">Redis → Worker → ClickHouse · MinIO (S3) · Postgres</text>
-  <text x="310" y="456" fill="#6b7280" font-size="9" text-anchor="middle">OTLP ingestion</text>
-  <text x="480" y="456" fill="#6b7280" font-size="9" text-anchor="middle">event propagation</text>
-  <text x="650" y="456" fill="#6b7280" font-size="9" text-anchor="middle">prompt storage</text>
+  <!-- Capture box 4: prompt version -->
+  <rect x="880" y="270" width="260" height="130" rx="10" fill="#171717" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="880" y="270" width="260" height="36" rx="10" fill="#0c1a2e"/>
+  <text x="1010" y="293" fill="#93c5fd" font-size="12" font-weight="700" text-anchor="middle">📋  Versão das instruções</text>
+  <text x="896" y="322" fill="#d1d5db" font-size="11">Registra qual versão e label</text>
+  <text x="896" y="338" fill="#d1d5db" font-size="11">das instruções foi usada em</text>
+  <text x="896" y="354" fill="#d1d5db" font-size="11">cada conversa. Permite saber</text>
+  <text x="896" y="370" fill="#d1d5db" font-size="11">se mudança de prompt causou</text>
+  <text x="896" y="386" fill="#6b7280" font-size="10">→ Nos metadados do trace</text>
 
-  <!-- Arrows to row 3 -->
-  <line x1="290" y1="320" x2="350" y2="388" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowAmber)"/>
-  <line x1="530" y1="320" x2="490" y2="388" stroke="#6366f1" stroke-width="2" marker-end="url(#arrowIndigo)"/>
-  <line x1="770" y1="320" x2="610" y2="388" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <!-- ══════ LANGFUSE VIEWS ══════ -->
+  <text x="600" y="440" fill="#9ca3af" font-size="11" font-weight="700" text-anchor="middle">ONDE VER NO PAINEL</text>
 
-  <!-- ══════ ROW 4: Langfuse UI ══════ -->
+  <rect x="40" y="456" width="260" height="80" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="170" y="478" fill="#f3f4f6" font-size="12" font-weight="700" text-anchor="middle">📋 Lista de Traces</text>
+  <text x="56" y="496" fill="#9ca3af" font-size="10">Todas as conversas, filtráveis</text>
+  <text x="56" y="512" fill="#9ca3af" font-size="10">por sessão, usuário, tag ou label</text>
+  <text x="56" y="526" fill="#6b7280" font-size="9">Menu: Tracing</text>
 
-  <rect x="200" y="510" width="130" height="60" rx="6" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-  <text x="265" y="534" fill="#d1d5db" font-size="11" font-weight="600" text-anchor="middle">Tracing</text>
-  <text x="265" y="550" fill="#6b7280" font-size="9" text-anchor="middle">spans · sessions</text>
-  <text x="265" y="562" fill="#6b7280" font-size="9" text-anchor="middle">users · tags · cost</text>
+  <rect x="320" y="456" width="260" height="80" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="450" y="478" fill="#f3f4f6" font-size="12" font-weight="700" text-anchor="middle">🔬 Detalhe do Trace</text>
+  <text x="336" y="496" fill="#9ca3af" font-size="10">Árvore de etapas com tempo</text>
+  <text x="336" y="512" fill="#9ca3af" font-size="10">de cada passo e metadados</text>
+  <text x="336" y="526" fill="#6b7280" font-size="9">Clique em qualquer trace</text>
 
-  <rect x="345" y="510" width="130" height="60" rx="6" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-  <text x="410" y="534" fill="#d1d5db" font-size="11" font-weight="600" text-anchor="middle">Trace Detail</text>
-  <text x="410" y="550" fill="#6b7280" font-size="9" text-anchor="middle">span tree · metadata</text>
-  <text x="410" y="562" fill="#6b7280" font-size="9" text-anchor="middle">prompt_version/label</text>
+  <rect x="600" y="456" width="260" height="80" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="730" y="478" fill="#f3f4f6" font-size="12" font-weight="700" text-anchor="middle">📝 Prompt Management</text>
+  <text x="616" y="496" fill="#9ca3af" font-size="10">Versões das instruções com</text>
+  <text x="616" y="512" fill="#9ca3af" font-size="10">labels production / staging</text>
+  <text x="616" y="526" fill="#6b7280" font-size="9">Menu: Prompt Management</text>
 
-  <rect x="490" y="510" width="130" height="60" rx="6" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-  <text x="555" y="534" fill="#d1d5db" font-size="11" font-weight="600" text-anchor="middle">Prompt Mgmt</text>
-  <text x="555" y="550" fill="#6b7280" font-size="9" text-anchor="middle">versões · labels</text>
-  <text x="555" y="562" fill="#6b7280" font-size="9" text-anchor="middle">production/staging</text>
+  <rect x="880" y="456" width="260" height="80" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="1010" y="478" fill="#f3f4f6" font-size="12" font-weight="700" text-anchor="middle">🧪 Playground</text>
+  <text x="896" y="496" fill="#9ca3af" font-size="10">Edite o prompt e re-execute</text>
+  <text x="896" y="512" fill="#9ca3af" font-size="10">um trace para comparar</text>
+  <text x="896" y="526" fill="#6b7280" font-size="9">Menu: Playground</text>
 
-  <rect x="635" y="510" width="130" height="60" rx="6" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-  <text x="700" y="534" fill="#d1d5db" font-size="11" font-weight="600" text-anchor="middle">Playground</text>
-  <text x="700" y="550" fill="#6b7280" font-size="9" text-anchor="middle">editar prompt ao vivo</text>
-  <text x="700" y="562" fill="#6b7280" font-size="9" text-anchor="middle">re-rodar trace</text>
+  <!-- ══════ BOTTOM: why it matters ══════ -->
+  <rect x="40" y="558" width="1120" height="150" rx="10" fill="#171717" stroke="#374151" stroke-width="1.5"/>
+  <text x="600" y="580" fill="#f3f4f6" font-size="14" font-weight="700" text-anchor="middle">🎯  Por que tudo isso importa?</text>
+  <line x1="60" y1="588" x2="1140" y2="588" stroke="#2a2a2a" stroke-width="1"/>
 
-  <line x1="380" y1="470" x2="265" y2="508" stroke="#6b7280" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="420" y1="470" x2="410" y2="508" stroke="#6b7280" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="500" y1="470" x2="555" y2="508" stroke="#6b7280" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="600" y1="470" x2="700" y2="508" stroke="#6b7280" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="80" y="612" fill="#6ee7b7" font-size="12" font-weight="700">Sem observabilidade</text>
+  <text x="80" y="630" fill="#9ca3af" font-size="11">O agente é uma caixa preta. Quando</text>
+  <text x="80" y="646" fill="#9ca3af" font-size="11">a resposta é errada, você não sabe se</text>
+  <text x="80" y="662" fill="#9ca3af" font-size="11">foi o banco, o modelo ou a instrução.</text>
+  <text x="80" y="678" fill="#9ca3af" font-size="11">Você não sabe quanto custou.</text>
+  <text x="80" y="694" fill="#9ca3af" font-size="11">Você não sabe se melhorou.</text>
 
-  <!-- ══════ Increment badges ══════ -->
-  <rect x="790" y="390" width="280" height="180" rx="8" fill="#171717" stroke="#374151" stroke-width="1"/>
-  <text x="800" y="410" fill="#9ca3af" font-size="11" font-weight="700">INCREMENTOS</text>
-  <rect x="800" y="420" width="260" height="24" rx="4" fill="#1e3a5f"/>
-  <text x="810" y="436" fill="#93c5fd" font-size="10" font-weight="600">Inc 1 — MCP tools instrumentadas</text>
-  <rect x="800" y="450" width="260" height="24" rx="4" fill="#1c1700"/>
-  <text x="810" y="466" fill="#fcd34d" font-size="10" font-weight="600">Inc 2 — OTLP + model usage</text>
-  <rect x="800" y="480" width="260" height="24" rx="4" fill="#052e16"/>
-  <text x="810" y="496" fill="#6ee7b7" font-size="10" font-weight="600">Inc 3 — sessions, users, traceparent</text>
-  <rect x="800" y="510" width="260" height="24" rx="4" fill="#1a0533"/>
-  <text x="810" y="526" fill="#d8b4fe" font-size="10" font-weight="600">Inc 4 — prompt management</text>
-  <text x="800" y="558" fill="#4b5563" font-size="9">push.py · fetch.py · promote</text>
+  <line x1="380" y1="600" x2="380" y2="700" stroke="#2a2a2a" stroke-width="1"/>
+
+  <text x="420" y="612" fill="#6ee7b7" font-size="12" font-weight="700">Com observabilidade</text>
+  <text x="420" y="630" fill="#d1d5db" font-size="11">Você vê cada etapa da resposta.</text>
+  <text x="420" y="646" fill="#d1d5db" font-size="11">Sabe exatamente quanto cada pergunta</text>
+  <text x="420" y="662" fill="#d1d5db" font-size="11">custou e onde estava o gargalo.</text>
+  <text x="420" y="678" fill="#d1d5db" font-size="11">Consegue comparar versões de instrução</text>
+  <text x="420" y="694" fill="#d1d5db" font-size="11">antes de colocar em produção.</text>
+
+  <line x1="720" y1="600" x2="720" y2="700" stroke="#2a2a2a" stroke-width="1"/>
+
+  <text x="760" y="612" fill="#6ee7b7" font-size="12" font-weight="700">O que implementamos</text>
+  <text x="760" y="630" fill="#93c5fd" font-size="10">Inc 1: Registrar cada busca no Neo4j como span</text>
+  <text x="760" y="648" fill="#fcd34d" font-size="10">Inc 2: Capturar tokens e custo de cada modelo</text>
+  <text x="760" y="666" fill="#6ee7b7" font-size="10">Inc 3: Rastrear sessão, usuário e ligar os spans</text>
+  <text x="760" y="684" fill="#d8b4fe" font-size="10">Inc 4: Versionar instruções e comparar A/B</text>
 
   <!-- Arrow markers -->
   <defs>
-    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+    <marker id="ab" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
       <path d="M0,0 L0,6 L8,3 z" fill="#3b82f6"/>
     </marker>
-    <marker id="arrowIndigo" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+    <marker id="ai" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
       <path d="M0,0 L0,6 L8,3 z" fill="#6366f1"/>
     </marker>
-    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+    <marker id="ag" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
       <path d="M0,0 L0,6 L8,3 z" fill="#10b981"/>
-    </marker>
-    <marker id="arrowAmber" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#f59e0b"/>
     </marker>
   </defs>
 

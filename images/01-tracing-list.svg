@@ -1,123 +1,141 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="680" font-family="Inter,Segoe UI,system-ui,sans-serif">
-  <!-- Background -->
-  <rect width="1100" height="680" fill="#0f0f0f"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="740" font-family="Inter,Segoe UI,system-ui,sans-serif">
+  <rect width="1200" height="740" fill="#0f0f0f"/>
+
+  <!-- Title -->
+  <text x="600" y="36" fill="#f3f4f6" font-size="17" font-weight="700" text-anchor="middle">Langfuse — Lista de Traces</text>
+  <text x="600" y="56" fill="#6b7280" font-size="12" text-anchor="middle">Cada linha é uma pergunta que o usuário fez ao sistema</text>
 
   <!-- Sidebar -->
-  <rect x="0" y="0" width="200" height="680" fill="#171717"/>
-  <text x="20" y="36" fill="#888" font-size="11" font-weight="600" letter-spacing="1">LANGFUSE</text>
-  <rect x="8" y="52" width="184" height="30" rx="6" fill="#1f2937"/>
-  <text x="20" y="72" fill="#f3f4f6" font-size="13" font-weight="500">🔍 Tracing</text>
-  <text x="20" y="110" fill="#6b7280" font-size="13">📊 Scores</text>
-  <text x="20" y="140" fill="#6b7280" font-size="13">📝 Prompt Mgmt</text>
-  <text x="20" y="170" fill="#6b7280" font-size="13">📈 Metrics</text>
+  <rect x="0" y="70" width="180" height="670" fill="#171717"/>
+  <text x="16" y="102" fill="#888" font-size="11" font-weight="600" letter-spacing="1">LANGFUSE</text>
+  <rect x="8" y="112" width="164" height="28" rx="6" fill="#1f2937"/>
+  <text x="16" y="130" fill="#f3f4f6" font-size="12" font-weight="500">🔍 Tracing</text>
+  <text x="16" y="158" fill="#6b7280" font-size="12">📝 Prompts</text>
+  <text x="16" y="184" fill="#6b7280" font-size="12">📊 Scores</text>
+  <text x="16" y="210" fill="#6b7280" font-size="12">📈 Métricas</text>
 
   <!-- Main area -->
-  <rect x="200" y="0" width="900" height="680" fill="#0f0f0f"/>
-
-  <!-- Header -->
-  <text x="220" y="36" fill="#f3f4f6" font-size="20" font-weight="700">Traces</text>
-  <rect x="800" y="16" width="120" height="28" rx="6" fill="#1d4ed8"/>
-  <text x="840" y="34" fill="white" font-size="12" font-weight="600">+ New trace</text>
-
-  <!-- Filters bar -->
-  <rect x="220" y="52" width="860" height="36" rx="6" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
-  <text x="240" y="74" fill="#6b7280" font-size="12">🔎  Search traces...</text>
-  <rect x="600" y="58" width="90" height="24" rx="4" fill="#1f2937" stroke="#374151" stroke-width="1"/>
-  <text x="618" y="74" fill="#9ca3af" font-size="11">Session ▾</text>
-  <rect x="700" y="58" width="80" height="24" rx="4" fill="#1f2937" stroke="#374151" stroke-width="1"/>
-  <text x="718" y="74" fill="#9ca3af" font-size="11">User ▾</text>
-  <rect x="790" y="58" width="80" height="24" rx="4" fill="#1f2937" stroke="#374151" stroke-width="1"/>
-  <text x="808" y="74" fill="#9ca3af" font-size="11">Tags ▾</text>
+  <rect x="180" y="70" width="1020" height="670" fill="#0f0f0f"/>
 
   <!-- Table header -->
-  <rect x="220" y="98" width="860" height="28" rx="4" fill="#1a1a1a"/>
-  <text x="240" y="116" fill="#6b7280" font-size="11" font-weight="600">ID / NAME</text>
-  <text x="460" y="116" fill="#6b7280" font-size="11" font-weight="600">SESSION</text>
-  <text x="600" y="116" fill="#6b7280" font-size="11" font-weight="600">USER</text>
-  <text x="700" y="116" fill="#6b7280" font-size="11" font-weight="600">TAGS</text>
-  <text x="880" y="116" fill="#6b7280" font-size="11" font-weight="600">COST</text>
-  <text x="960" y="116" fill="#6b7280" font-size="11" font-weight="600">LATENCY</text>
+  <rect x="196" y="80" width="860" height="28" rx="4" fill="#1a1a1a"/>
+  <text x="216" y="98" fill="#6b7280" font-size="11" font-weight="600">CONVERSA / ID</text>
+  <text x="430" y="98" fill="#6b7280" font-size="11" font-weight="600">SESSÃO</text>
+  <text x="560" y="98" fill="#6b7280" font-size="11" font-weight="600">USUÁRIO</text>
+  <text x="660" y="98" fill="#6b7280" font-size="11" font-weight="600">MARCADORES</text>
+  <text x="840" y="98" fill="#6b7280" font-size="11" font-weight="600">CUSTO</text>
+  <text x="920" y="98" fill="#6b7280" font-size="11" font-weight="600">TEMPO</text>
 
   <!-- Row 1 — production -->
-  <rect x="220" y="130" width="860" height="44" rx="4" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
-  <text x="240" y="149" fill="#93c5fd" font-size="12" font-weight="500">3c80ed9f7dd5...</text>
-  <text x="240" y="165" fill="#6b7280" font-size="10">2026-11-05 11:03  ask-orbisa</text>
-  <text x="460" y="155" fill="#d1d5db" font-size="12">sess-prod</text>
-  <text x="600" y="155" fill="#d1d5db" font-size="12">workshop</text>
-  <rect x="700" y="140" width="52" height="18" rx="9" fill="#14532d"/>
-  <text x="707" y="153" fill="#86efac" font-size="10" font-weight="600">Q01</text>
-  <rect x="758" y="140" width="68" height="18" rx="9" fill="#1e3a5f"/>
-  <text x="762" y="153" fill="#93c5fd" font-size="10" font-weight="600">production</text>
-  <rect x="832" y="140" width="82" height="18" rx="9" fill="#1f2937"/>
-  <text x="838" y="153" fill="#9ca3af" font-size="10">as-of:2026-10</text>
-  <text x="878" y="155" fill="#d1d5db" font-size="12">$0.1762</text>
-  <text x="960" y="155" fill="#d1d5db" font-size="12">291s</text>
+  <rect x="196" y="114" width="860" height="46" rx="4" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="216" y="134" fill="#93c5fd" font-size="12" font-weight="500">3c80ed9f7dd5…</text>
+  <text x="216" y="150" fill="#6b7280" font-size="10">5 nov 11:03  — Q01: quem aprova reembolso na Orion?</text>
+  <text x="430" y="142" fill="#d1d5db" font-size="12">sess-prod</text>
+  <text x="560" y="142" fill="#d1d5db" font-size="12">workshop</text>
+  <rect x="660" y="122" width="52" height="18" rx="9" fill="#14532d"/>
+  <text x="668" y="135" fill="#86efac" font-size="10" font-weight="600">Q01</text>
+  <rect x="718" y="122" width="68" height="18" rx="9" fill="#1e3a5f"/>
+  <text x="723" y="135" fill="#93c5fd" font-size="10" font-weight="600">production</text>
+  <rect x="792" y="122" width="82" height="18" rx="9" fill="#1f2937"/>
+  <text x="798" y="135" fill="#9ca3af" font-size="10">as-of:2026-10</text>
+  <text x="840" y="142" fill="#d1d5db" font-size="12">$0.1762</text>
+  <text x="920" y="142" fill="#d1d5db" font-size="12">291s</text>
 
   <!-- Row 2 — staging -->
-  <rect x="220" y="180" width="860" height="44" rx="4" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
-  <text x="240" y="199" fill="#93c5fd" font-size="12" font-weight="500">0d721600922d...</text>
-  <text x="240" y="215" fill="#6b7280" font-size="10">2026-11-05 11:00  ask-orbisa</text>
-  <text x="460" y="205" fill="#d1d5db" font-size="12">sess-staging</text>
-  <text x="600" y="205" fill="#d1d5db" font-size="12">workshop</text>
-  <rect x="700" y="190" width="52" height="18" rx="9" fill="#14532d"/>
-  <text x="707" y="203" fill="#86efac" font-size="10" font-weight="600">Q01</text>
-  <rect x="758" y="190" width="56" height="18" rx="9" fill="#451a03"/>
-  <text x="765" y="203" fill="#fed7aa" font-size="10" font-weight="600">staging</text>
-  <rect x="820" y="190" width="82" height="18" rx="9" fill="#1f2937"/>
-  <text x="826" y="203" fill="#9ca3af" font-size="10">as-of:2026-10</text>
-  <text x="878" y="205" fill="#d1d5db" font-size="12">$0.1881</text>
-  <text x="960" y="205" fill="#d1d5db" font-size="12">277s</text>
+  <rect x="196" y="166" width="860" height="46" rx="4" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="216" y="186" fill="#93c5fd" font-size="12" font-weight="500">0d721600922d…</text>
+  <text x="216" y="202" fill="#6b7280" font-size="10">5 nov 11:00  — Q01: quem aprova reembolso na Orion?</text>
+  <text x="430" y="194" fill="#d1d5db" font-size="12">sess-staging</text>
+  <text x="560" y="194" fill="#d1d5db" font-size="12">workshop</text>
+  <rect x="660" y="174" width="52" height="18" rx="9" fill="#14532d"/>
+  <text x="668" y="187" fill="#86efac" font-size="10" font-weight="600">Q01</text>
+  <rect x="718" y="174" width="56" height="18" rx="9" fill="#451a03"/>
+  <text x="726" y="187" fill="#fed7aa" font-size="10" font-weight="600">staging</text>
+  <text x="840" y="194" fill="#d1d5db" font-size="12">$0.1881</text>
+  <text x="920" y="194" fill="#d1d5db" font-size="12">277s</text>
 
   <!-- Row 3 -->
-  <rect x="220" y="230" width="860" height="44" rx="4" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
-  <text x="240" y="249" fill="#6b7280" font-size="12">a3f7c12e0011...</text>
-  <text x="240" y="265" fill="#4b5563" font-size="10">2026-11-04 15:22  ask-orbisa</text>
-  <text x="460" y="255" fill="#6b7280" font-size="12">sess-01</text>
-  <text x="600" y="255" fill="#6b7280" font-size="12">workshop</text>
-  <text x="878" y="255" fill="#6b7280" font-size="12">$0.1544</text>
-  <text x="960" y="255" fill="#6b7280" font-size="12">245s</text>
+  <rect x="196" y="218" width="860" height="40" rx="4" fill="#171717" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="216" y="238" fill="#6b7280" font-size="12">a3f7c12e0011…</text>
+  <text x="216" y="250" fill="#4b5563" font-size="10">4 nov 15:22  — Q01: quem aprova reembolso na Orion?</text>
+  <text x="430" y="242" fill="#6b7280" font-size="12">sess-01</text>
+  <text x="560" y="242" fill="#6b7280" font-size="12">workshop</text>
+  <text x="840" y="242" fill="#6b7280" font-size="12">$0.1544</text>
 
-  <!-- ===== ANNOTATIONS ===== -->
+  <!-- ───── ANNOTATIONS ───── -->
 
-  <!-- Annotation 1: Tags com session e prompt label -->
-  <rect x="220" y="296" width="560" height="1" fill="#374151"/>
-  <!-- Arrow pointing to tags area in row 1 -->
-  <line x1="760" y1="149" x2="760" y2="290" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <polygon points="755,290 760,302 765,290" fill="#f59e0b"/>
-  <rect x="560" y="306" width="400" height="52" rx="6" fill="#1c1700" stroke="#f59e0b" stroke-width="1.5"/>
-  <text x="572" y="323" fill="#fcd34d" font-size="11" font-weight="700">🏷 Tags automáticas — runner.py ask()</text>
-  <text x="572" y="340" fill="#d1d5db" font-size="11">question_id="Q01", category="anchor",</text>
-  <text x="572" y="355" fill="#d1d5db" font-size="11">prompt_label="production", as-of:2026-10-31</text>
+  <!-- 1. O que é um trace? -->
+  <rect x="196" y="276" width="310" height="110" rx="8" fill="#0c1a2e" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="212" y="296" fill="#93c5fd" font-size="12" font-weight="700">🔵  O que é um trace?</text>
+  <text x="212" y="314" fill="#d1d5db" font-size="11">É o registro completo de uma pergunta</text>
+  <text x="212" y="330" fill="#d1d5db" font-size="11">feita ao sistema — do momento em que</text>
+  <text x="212" y="346" fill="#d1d5db" font-size="11">o usuário perguntou até a resposta final,</text>
+  <text x="212" y="362" fill="#d1d5db" font-size="11">incluindo cada busca e consulta feita.</text>
+  <text x="212" y="378" fill="#6b7280" font-size="10">→ Clique em um para ver o detalhe interno</text>
+  <line x1="280" y1="276" x2="280" y2="260" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="275,260 280,250 285,260" fill="#3b82f6"/>
 
-  <!-- Annotation 2: session column -->
-  <line x1="488" y1="174" x2="488" y2="380" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <polygon points="483,380 488,392 493,380" fill="#34d399"/>
-  <rect x="220" y="395" width="360" height="52" rx="6" fill="#052e16" stroke="#34d399" stroke-width="1.5"/>
-  <text x="232" y="413" fill="#6ee7b7" font-size="11" font-weight="700">📦 session_id — --session flag no CLI</text>
-  <text x="232" y="430" fill="#d1d5db" font-size="11">docker run --rm agent --id Q01 --session sess-prod</text>
-  <text x="232" y="445" fill="#d1d5db" font-size="11">Agrupa múltiplas perguntas num mesmo contexto</text>
+  <!-- 2. Sessão -->
+  <rect x="196" y="400" width="310" height="96" rx="8" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>
+  <text x="212" y="420" fill="#6ee7b7" font-size="12" font-weight="700">📦  O que é uma sessão?</text>
+  <text x="212" y="438" fill="#d1d5db" font-size="11">Agrupa várias perguntas de um mesmo</text>
+  <text x="212" y="454" fill="#d1d5db" font-size="11">contexto. Exemplo: todas as perguntas</text>
+  <text x="212" y="470" fill="#d1d5db" font-size="11">feitas durante um workshop ficam juntas</text>
+  <text x="212" y="486" fill="#d1d5db" font-size="11">para facilitar comparação.</text>
+  <line x1="430" y1="400" x2="430" y2="212" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="425,212 430,202 435,212" fill="#10b981"/>
 
-  <!-- Annotation 3: cost/latency -->
-  <line x1="960" y1="174" x2="960" y2="460" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <polygon points="955,460 960,472 965,460" fill="#c084fc"/>
-  <rect x="790" y="475" width="290" height="52" rx="6" fill="#1a0533" stroke="#c084fc" stroke-width="1.5"/>
-  <text x="802" y="493" fill="#d8b4fe" font-size="11" font-weight="700">💰 Custo — ResultMessage.total_cost_usd</text>
-  <text x="802" y="510" fill="#d1d5db" font-size="11">model_usage → _record_model_usage()</text>
-  <text x="802" y="525" fill="#d1d5db" font-size="11">registrado em generation spans</text>
+  <!-- 3. Marcadores / tags -->
+  <rect x="524" y="276" width="310" height="124" rx="8" fill="#1c1700" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="540" y="296" fill="#fcd34d" font-size="12" font-weight="700">🏷  Para que servem os marcadores?</text>
+  <text x="540" y="314" fill="#d1d5db" font-size="11">Permitem filtrar e comparar grupos de</text>
+  <text x="540" y="330" fill="#d1d5db" font-size="11">traces. Aqui usamos três tipos:</text>
+  <text x="540" y="350" fill="#86efac" font-size="11">• Q01 — identifica qual pergunta foi testada</text>
+  <text x="540" y="366" fill="#93c5fd" font-size="11">• production — versão estável das instruções</text>
+  <text x="540" y="382" fill="#fed7aa" font-size="11">• staging — versão em teste com nova regra</text>
+  <text x="540" y="398" fill="#6b7280" font-size="10">→ Filtre por staging para ver só os testes</text>
+  <line x1="740" y1="276" x2="740" y2="192" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="735,192 740,182 745,192" fill="#f59e0b"/>
 
-  <!-- Annotation 4: duas linhas = dois prompts -->
-  <rect x="220" y="560" width="500" height="62" rx="6" fill="#0c1a2e" stroke="#3b82f6" stroke-width="1.5"/>
-  <line x1="470" y1="202" x2="380" y2="558" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <polygon points="375,556 380,568 385,556" fill="#3b82f6"/>
-  <text x="232" y="578" fill="#93c5fd" font-size="11" font-weight="700">🔵 Dois traces = dois prompt labels</text>
-  <text x="232" y="595" fill="#d1d5db" font-size="11">production → ask-orbisa-system v1 (sem a nova regra)</text>
-  <text x="232" y="610" fill="#d1d5db" font-size="11">staging     → ask-orbisa-system v2 (com cláusula de contrato)</text>
+  <!-- 4. Custo -->
+  <rect x="524" y="416" width="310" height="96" rx="8" fill="#1a0533" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="540" y="436" fill="#d8b4fe" font-size="12" font-weight="700">💰  Por que monitorar custo?</text>
+  <text x="540" y="454" fill="#d1d5db" font-size="11">Cada pergunta consome tokens do modelo</text>
+  <text x="540" y="470" fill="#d1d5db" font-size="11">de linguagem. O Langfuse soma o custo</text>
+  <text x="540" y="486" fill="#d1d5db" font-size="11">de todas as chamadas da conversa,</text>
+  <text x="540" y="502" fill="#d1d5db" font-size="11">facilitando controle de orçamento.</text>
+  <line x1="850" y1="416" x2="860" y2="192" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="855,192 860,182 865,192" fill="#c084fc"/>
 
-  <!-- Legend box -->
-  <rect x="790" y="560" width="290" height="80" rx="6" fill="#171717" stroke="#374151" stroke-width="1"/>
-  <text x="802" y="578" fill="#9ca3af" font-size="10" font-weight="700">IMPLEMENTADO EM</text>
-  <text x="802" y="596" fill="#6b7280" font-size="10">runner.py → ask()  propagate_attributes()</text>
-  <text x="802" y="612" fill="#6b7280" font-size="10">__main__.py → --session --user --prompt-label</text>
-  <text x="802" y="628" fill="#6b7280" font-size="10">push.py → --label production|staging</text>
+  <!-- 5. Dois traces = comparação -->
+  <rect x="196" y="514" width="638" height="96" rx="8" fill="#171717" stroke="#374151" stroke-width="1.5"/>
+  <text x="212" y="534" fill="#f3f4f6" font-size="12" font-weight="700">🧪  Por que temos duas linhas com a mesma pergunta?</text>
+  <text x="212" y="554" fill="#d1d5db" font-size="11">São dois experimentos rodados com instruções diferentes:</text>
+  <text x="212" y="572" fill="#93c5fd" font-size="11">• production (v1): instruções originais do sistema</text>
+  <text x="212" y="590" fill="#fed7aa" font-size="11">• staging (v2): instruções com a nova regra "cite o número da cláusula do contrato"</text>
+  <text x="212" y="606" fill="#6b7280" font-size="10">Compare as respostas nos dois traces para decidir se a nova regra melhora ou piora a qualidade.</text>
+
+  <!-- 6. Observabilidade geral -->
+  <rect x="852" y="276" width="204" height="334" rx="8" fill="#171717" stroke="#374151" stroke-width="1.5"/>
+  <text x="862" y="296" fill="#9ca3af" font-size="11" font-weight="700">🎯 Como isso ajuda?</text>
+  <line x1="862" y1="302" x2="1046" y2="302" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="862" y="320" fill="#6b7280" font-size="10">Sem observabilidade:</text>
+  <text x="862" y="336" fill="#ef4444" font-size="10">✗ não sabe quanto custou</text>
+  <text x="862" y="352" fill="#ef4444" font-size="10">✗ não sabe quanto demorou</text>
+  <text x="862" y="368" fill="#ef4444" font-size="10">✗ não consegue comparar</text>
+  <text x="862" y="384" fill="#ef4444" font-size="10">   versões de instrução</text>
+  <text x="862" y="400" fill="#ef4444" font-size="10">✗ não sabe quem perguntou</text>
+  <line x1="862" y1="412" x2="1046" y2="412" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="862" y="428" fill="#6b7280" font-size="10">Com observabilidade:</text>
+  <text x="862" y="444" fill="#10b981" font-size="10">✓ custo por pergunta/usuário</text>
+  <text x="862" y="460" fill="#10b981" font-size="10">✓ latência de cada etapa</text>
+  <text x="862" y="476" fill="#10b981" font-size="10">✓ A/B entre versões</text>
+  <text x="862" y="492" fill="#10b981" font-size="10">✓ sessão e usuário rastreados</text>
+  <text x="862" y="508" fill="#10b981" font-size="10">✓ fallback se sistema cair</text>
+  <line x1="862" y1="518" x2="1046" y2="518" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="862" y="534" fill="#6b7280" font-size="10">Cada linha desta tela é</text>
+  <text x="862" y="550" fill="#6b7280" font-size="10">uma conversa auditável.</text>
+  <text x="862" y="566" fill="#6b7280" font-size="10">Clique nela para ver cada</text>
+  <text x="862" y="582" fill="#6b7280" font-size="10">passo que o agente deu.</text>
 
 </svg>
