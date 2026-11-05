@@ -78,9 +78,9 @@ def correctness(*, input: Any, output: Any, expected_output: Any, metadata: Any 
         max_tokens=512,
         system=_SYSTEM,
         messages=[{"role": "user", "content": prompt}],
-        response_format=_JudgeResult,
+        output_format=_JudgeResult,
     )
-    judgment: _JudgeResult = result.parsed
+    judgment: _JudgeResult = result.parsed_output
     score = _SCORE_MAP.get(judgment.verdict, 0.0)
 
     # record as evaluator observation on the current trace

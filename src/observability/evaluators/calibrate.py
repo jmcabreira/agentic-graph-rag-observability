@@ -42,9 +42,9 @@ def _judge(input_: dict, answer: str, expected_output: dict, metadata: dict) -> 
         max_tokens=512,
         system=_SYSTEM,
         messages=[{"role": "user", "content": prompt}],
-        response_format=_JudgeResult,
+        output_format=_JudgeResult,
     )
-    return result.parsed
+    return result.parsed_output
 
 
 def _generate_trap_answer(q: dict) -> str:
@@ -57,10 +57,12 @@ def _generate_trap_answer(q: dict) -> str:
         "Do not reveal that this is a trap answer. Write 2–4 sentences."
     )
     msg = client.messages.create(
-        model=HAIKU_MODEL, max_tokens=256,
+        model=HAIKU_MODEL, max_tokens=1024,
+        thinking={"type": "disabled"},
         messages=[{"role": "user", "content": prompt}],
     )
-    return msg.content[0].text.strip()
+    text_blocks = [b for b in msg.content if hasattr(b, "text")]
+    return text_blocks[0].text.strip()
 
 
 def calibrate(ids: list[str] | None = None) -> None:
