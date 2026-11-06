@@ -1,75 +1,108 @@
-"""A local webhook receiver for Langfuse alert automations, so no alert payload leaves the laptop.
+"""Local webhook receiver for Langfuse alerts.
 
-Runs as the compose service `alert-sink`: in Langfuse, point an alert automation (webhook) at
-http://alert-sink/langfuse. Langfuse accepts only ports 80 and 443 and blocks private hosts unless they are
-whitelisted (LANGFUSE_WEBHOOK_WHITELISTED_HOST in infra/docker-compose.yml).
+Starts an HTTP server on port 9999 that logs incoming webhook payloads.
+Langfuse alert webhooks must point to: http://host.docker.internal:9999/alert
 
-    make alerts        # print the alerts received so far (uv run python scripts/alert_sink.py --tail)
+Usage:
+  uv run python scripts/alert_sink.py          # run server (Ctrl+C to stop)
+  uv run python scripts/alert_sink.py --tail   # run server and print last 20 events
 
-Every POST is appended to .helix/alerts.jsonl with its headers. When ALERT_WEBHOOK_SECRET is set, the
-x-langfuse-signature header is checked (HMAC-SHA256 of "<timestamp>.<body>").
+Requirements:
+  - Langfuse allows webhooks to private hosts (localhost / host.docker.internal)
+  - Set "No data handling" on the alert so a quiet hour does not fire
+  - Port 9999 must be reachable from the Langfuse worker container
 """
 
 import argparse
-import hashlib
-import hmac
 import json
 import os
+import sys
+import threading
 from datetime import datetime, timezone
-from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 
-LOG = Path(os.environ.get("ALERT_SINK_LOG") or Path(__file__).resolve().parents[1] / ".helix" / "alerts.jsonl")
+LOG_FILE = Path(__file__).parent.parent / "data" / "alert_log.jsonl"
+PORT = 9999
 
 
-def signature_ok(headers, body: bytes) -> bool | None:
-    secret = os.environ.get("ALERT_WEBHOOK_SECRET")
-    header = headers.get("x-langfuse-signature")
-    if not secret or not header:
-        return None
-    parts = dict(part.split("=", 1) for part in header.split(",") if "=" in part)
-    expected = hmac.new(secret.encode(), f"{parts.get('t', '')}.{body.decode()}".encode(), hashlib.sha256).hexdigest()
-    return hmac.compare_digest(expected, parts.get("v1", ""))
+def _append(payload: dict):
+    LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
+    entry = {"received_at": datetime.now(timezone.utc).isoformat(), "payload": payload}
+    with open(LOG_FILE, "a") as f:
+        f.write(json.dumps(entry) + "\n")
+    return entry
 
 
-class Handler(BaseHTTPRequestHandler):
-    def do_POST(self) -> None:
-        body = self.rfile.read(int(self.headers.get("content-length", 0)))
-        try:
-            payload = json.loads(body or b"{}")
-        except ValueError:
-            payload = {"raw": body.decode(errors="replace")}
-        record = {"received_at": datetime.now(timezone.utc).isoformat(), "path": self.path,
-                  "signature_ok": signature_ok(self.headers, body), "payload": payload}
-        LOG.parent.mkdir(parents=True, exist_ok=True)
-        with LOG.open("a") as f:
-            f.write(json.dumps(record) + "\n")
-        print(f"alert received: {json.dumps(payload)[:300]}", flush=True)
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(b"ok")
-
-    def do_GET(self) -> None:
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(b"alert-sink up")
-
-    def log_message(self, *_) -> None:
-        pass
-
-
-def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--port", type=int, default=8787)
-    parser.add_argument("--tail", action="store_true", help="print received alerts and exit")
-    args = parser.parse_args()
-    if args.tail:
-        for line in LOG.read_text().splitlines() if LOG.exists() else []:
-            record = json.loads(line)
-            print(record["received_at"], json.dumps(record["payload"])[:400])
+def _tail(n: int = 20):
+    if not LOG_FILE.exists():
+        print("No alerts received yet.")
         return
-    print(f"alert-sink listening on :{args.port}, writing {LOG}", flush=True)
-    ThreadingHTTPServer(("0.0.0.0", args.port), Handler).serve_forever()
+    lines = LOG_FILE.read_text().strip().splitlines()
+    for line in lines[-n:]:
+        try:
+            entry = json.loads(line)
+            ts = entry["received_at"]
+            payload = entry["payload"]
+            alert_name = payload.get("alertName") or payload.get("name", "?")
+            value = payload.get("value", payload.get("metric", "?"))
+            print(f"[{ts}]  {alert_name}  value={value}")
+            if "message" in payload:
+                print(f"         {payload['message']}")
+        except Exception:
+            print(line)
+
+
+class AlertHandler(BaseHTTPRequestHandler):
+    def do_POST(self):
+        length = int(self.headers.get("Content-Length", 0))
+        body = self.rfile.read(length) if length else b"{}"
+        try:
+            payload = json.loads(body)
+        except Exception:
+            payload = {"raw": body.decode(errors="replace")}
+
+        entry = _append(payload)
+        ts = entry["received_at"]
+        alert_name = payload.get("alertName") or payload.get("name", "webhook")
+        value = payload.get("value", "?")
+        print(f"\n🔔 [{ts}] ALERT RECEIVED: {alert_name}  value={value}", flush=True)
+        if "message" in payload:
+            print(f"   {payload['message']}", flush=True)
+        print(f"   Saved to {LOG_FILE}\n", flush=True)
+
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b'{"ok": true}')
+
+    def log_message(self, fmt, *args):
+        pass  # silence access log noise
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Langfuse alert webhook receiver")
+    parser.add_argument("--tail", action="store_true", help="Print last 20 alerts and keep running")
+    parser.add_argument("--show", action="store_true", help="Print last 20 alerts and exit")
+    parser.add_argument("--port", type=int, default=PORT)
+    args = parser.parse_args()
+
+    if args.show:
+        _tail()
+        return
+
+    if args.tail:
+        _tail()
+
+    server = HTTPServer(("0.0.0.0", args.port), AlertHandler)
+    print(f"Alert sink listening on http://0.0.0.0:{args.port}/alert")
+    print(f"Logs: {LOG_FILE}")
+    print("Configure Langfuse webhook URL: http://host.docker.internal:{args.port}/alert")
+    print("Ctrl+C to stop\n")
+
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        print("\nStopped.")
 
 
 if __name__ == "__main__":
