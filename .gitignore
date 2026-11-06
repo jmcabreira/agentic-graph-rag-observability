@@ -7,3 +7,8 @@ __pycache__/
 .fastembed_cache/
 .playwright-mcp
 .DS_Store
+.claude/
+node_modules/
+prompts/
+src/observability/prompts/candidates/
+experiment_prod-*.json
